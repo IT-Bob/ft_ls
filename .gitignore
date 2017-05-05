@@ -27,7 +27,7 @@
 *.i*86
 *.x86_64
 *.hex
-ft_ls/ft_ls
+ft_ls
 
 # Debug files
 *.dSYM/
