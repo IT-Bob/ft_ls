@@ -38,7 +38,7 @@ static void	fill_flags_tab(char *flags, int tab[])
 		illegal_option(flags[j]);
 }
 
-int			find_flags(char **argv, t_ls ls)
+int			find_flags(char **argv, int flags[])
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int			find_flags(char **argv, t_ls ls)
 			return (i);
 		else if (argv[i][1] == '-' && !argv[i][2])
 			return (++i);
-		fill_flags_tab(&argv[i][1], ls.tab);
+		fill_flags_tab(&argv[i][1], flags);
 	}
 	return (i);
 }

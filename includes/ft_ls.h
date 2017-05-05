@@ -31,14 +31,14 @@
 
 typedef struct	s_ls
 {
-	int	tab[NB_FLAG];
+	int	flags[NB_FLAG];
 }				t_ls;
 
 /*
 ** src/flags
 */
 
-int				find_flags(char **argv, t_ls ls);
+int				find_flags(char **argv, int flags[]);
 void			illegal_option(char c);
 
 #endif
