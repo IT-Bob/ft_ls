@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 17:11:53 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/05 17:29:27 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/05 17:38:21 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			find_flags(char **argv, t_ls ls)
 	{
 		if (!argv[i][1])
 			return (i);
-		else if (argv[i][1] == '-')
+		else if (argv[i][1] == '-' && !argv[i][2])
 			return (++i);
 		fill_flags_tab(&argv[i][1], ls.tab);
 	}
