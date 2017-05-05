@@ -6,14 +6,14 @@
 #    By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 17:18:16 by aguerin           #+#    #+#              #
-#    Updated: 2017/05/05 13:24:45 by aguerin          ###   ########.fr        #
+#    Updated: 2017/05/05 13:26:40 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-CPPFLAGS = -I libft/includes/
+CPPFLAGS = -I includes/ -I libft/includes/
 CLIB = -L libft/ -lft
 SRC = src/
 STR = $(SRC)struct/
