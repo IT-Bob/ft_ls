@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/05 13:26:17 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/05 17:24:16 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,21 @@
 
 # include "libft.h"
 
-# define NAME		"ls"
-# define FLAGS_NAME "Ralrt1"
+# define NAME		"ft_ls"
+# define FLAGS_NAME	"Ralrt1"
 # define FLAGS		"Ralrt1"
 # define NB_FLAG	6
+
+typedef struct	s_ls
+{
+	int	tab[NB_FLAG];
+}				t_ls;
+
+/*
+** src/flags
+*/
+
+int				find_flags(char **argv, t_ls ls);
+void			illegal_option(char c);
 
 #endif
