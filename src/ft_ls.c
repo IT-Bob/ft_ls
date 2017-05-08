@@ -12,22 +12,22 @@
 
 #include "ft_ls.h"
 
-#include <sys/stat.h>
-#include <time.h>
 void	print(t_list *list)
 {
 	ft_putendl(list->content);
 }
 
+#include <sys/stat.h>
 void	find_elem(char **argv, int size, t_ls ls)
 {
 	int			i;
 	struct stat	s;
-	t_list		*direc;
-	t_list		*files;
+	t_elem		*direc;
+	t_elem		*files;
 	t_list		*nonex;
-if (ls.flags[0])
-	;
+
+	if (ls.flags[0])
+		;
 	i = -1;
 	direc = NULL;
 	files = NULL;
@@ -39,15 +39,25 @@ if (ls.flags[0])
 		if (!s.st_ino)
 			nonex = ft_lstaddalpha(&nonex, ft_lstnew(argv[i], ft_strlen(argv[i])));
 		else if (S_ISDIR(s.st_mode))
-			direc = ft_lstaddalpha(&direc, ft_lstnew(argv[i], ft_strlen(argv[i])));
+			direc = ls_lstaddtime(&direc, ls_lstnew(argv[i], NULL, s));
 		else
-			files = ft_lstaddalpha(&files, ft_lstnew(argv[i], ft_strlen(argv[i])));
+			files = ls_lstaddtime(&files, ls_lstnew(argv[i], NULL, s));
+		printf("%ld\n", s.st_ctime);
 	}
+
 	ft_lstiter(nonex, &print);
 	ft_putendl("");
-	ft_lstiter(files, &print);
+	while(files)
+	{
+		ft_putendl(files->name);
+		files = files->next;
+	}
 	ft_putendl("");
-	ft_lstiter(direc, &print);
+	while(direc)
+	{
+		ft_putendl(direc->name);
+		direc = direc->next;
+	}
 }
 
 int	main(int argc, char **argv)
