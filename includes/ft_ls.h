@@ -23,6 +23,7 @@
 # define FT_LS_H
 
 # include "libft.h"
+# include <sys/stat.h>
 
 # define NAME		"ft_ls"
 # define FLAGS_NAME	"Ralrt1"
@@ -34,11 +35,25 @@ typedef struct	s_ls
 	int	flags[NB_FLAG];
 }				t_ls;
 
+typedef struct	s_elem
+{
+	char			*name;
+	char			*path;
+	struct stat		stat;
+	struct s_elem	*next;
+}				t_elem;
+
 /*
 ** src/flags
 */
 
 int				find_flags(char **argv, int flags[]);
 void			illegal_option(char c);
+
+/*
+** src/list
+*/
+
+t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 
 #endif

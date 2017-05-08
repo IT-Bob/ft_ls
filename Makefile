@@ -25,11 +25,9 @@ DRT = $(SRC)directory/
 
 PTC =\
 $(SRC)ft_ls.c\
-$(FLG)find.c $(FLG)error.c
-#$(DRT)\
-#$(FLS)\
-#$(LST)\
-#$(NOE)\
+$(FLG)find.c $(FLG)error.c\
+$(LST)ls_lstnew.c
+#$(NOE)
 #$(STR)
 PTO = $(PTC:.c=.o)
 
