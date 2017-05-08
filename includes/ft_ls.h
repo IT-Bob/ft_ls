@@ -55,6 +55,7 @@ void			illegal_option(char c);
 */
 
 t_elem			*ls_lstaddalpha(t_elem **alst, t_elem *new);
+t_elem			*ls_lstaddtime(t_elem **alst, t_elem *new);
 t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 
 #endif

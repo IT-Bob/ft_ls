@@ -26,9 +26,8 @@ DRT = $(SRC)directory/
 PTC =\
 $(SRC)ft_ls.c\
 $(FLG)find.c $(FLG)error.c\
-$(LST)ls_lstaddalpha.c $(LST)ls_lstnew.c
-#$(NOE)
-#$(STR)
+$(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstnew.c
+
 PTO = $(PTC:.c=.o)
 
 LIB = libft/libft.a
