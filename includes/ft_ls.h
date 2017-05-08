@@ -54,6 +54,7 @@ void			illegal_option(char c);
 ** src/list
 */
 
+t_elem			*ls_lstaddalpha(t_elem **alst, t_elem *new);
 t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 
 #endif
