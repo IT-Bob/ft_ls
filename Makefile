@@ -6,7 +6,7 @@
 #    By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 17:18:16 by aguerin           #+#    #+#              #
-#    Updated: 2017/05/09 17:00:14 by aguerin          ###   ########.fr        #
+#    Updated: 2017/05/09 17:10:29 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DRT = $(SRC)directory/
 PTC =\
 $(SRC)ft_ls.c\
 $(FLG)find.c $(FLG)error.c\
-$(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstiter.c $(LST)ls_lstnew.c
+$(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstiter.c $(LST)ls_lstnew.c $(LST)print.c
 
 PTO = $(PTC:.c=.o)
 
