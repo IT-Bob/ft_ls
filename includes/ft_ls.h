@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/05 17:24:16 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:59:01 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			illegal_option(char c);
 
 t_elem			*ls_lstaddalpha(t_elem **alst, t_elem *new);
 t_elem			*ls_lstaddtime(t_elem **alst, t_elem *new);
+void			ls_lstiter(t_elem *lst, void(*f)(t_elem *elem));
 t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 
 #endif
