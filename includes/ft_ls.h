@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 19:36:08 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/09 20:19:55 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,11 @@ void			ls_lstiter_reverse(t_elem *list, void (*f)(t_elem*));
 t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 void			print_name(t_elem *elem);
 void			print_path(t_elem *path);
+
+/*
+** src/nonex
+*/
+
+void			ls_nonex(t_list *list, t_ls ls);
 
 #endif
