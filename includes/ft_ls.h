@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 17:49:39 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/09 19:36:08 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 typedef struct	s_ls
 {
 	int	flags[NB_FLAG];
+	int	error;
 }				t_ls;
 
 typedef struct	s_elem
@@ -57,7 +58,8 @@ void			illegal_option(char c);
 t_elem			*ls_lstaddalpha(t_elem **alst, t_elem *new);
 t_elem			*ls_lstaddtime(t_elem **alst, t_elem *new);
 void			ls_lstdel(t_elem **elem);
-void			ls_lstiter(t_elem *lst, void(*f)(t_elem *elem));
+void			ls_lstiter(t_elem *lst, void(*f)(t_elem*));
+void			ls_lstiter_reverse(t_elem *list, void (*f)(t_elem*));
 t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 void			print_name(t_elem *elem);
 void			print_path(t_elem *path);
