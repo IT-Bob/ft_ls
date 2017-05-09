@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/05 17:35:58 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:36:29 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*
 ** ls_lstaddalpha() trie les éléments par date de dernière modification en se
-** basant sur le champ st_ctime de la structure stat contenue dans t_elem.
+** basant sur les informations de la structure stat, contenue dans t_elem.
 */
 
 t_elem	*ls_lstaddtime(t_elem **alst, t_elem *new)
@@ -31,19 +31,14 @@ t_elem	*ls_lstaddtime(t_elem **alst, t_elem *new)
 		prev = NULL;
 		if (!lst)
 			return (new);
-		while(lst && (new->stat.st_ctime < lst->stat.st_ctime))
+		while (lst && ((new->stat.st_mtime < lst->stat.st_mtime) ||
+			((new->stat.st_mtime == lst->stat.st_mtime) && ft_strcmp(new->name, lst->name) > 0)))/*&&
+			(new->stat.st_mtimespec.tv_nsec < new->stat.st_mtimespec.tv_nsec)*/
 		{
 			prev = lst;
 			lst = lst->next;
 		}
-		if (lst && (new->stat.st_ctime == lst->stat.st_ctime))
-		{
-			if (prev)
-				prev->next = ls_lstaddalpha(&prev->next, new);
-			else
-				head = new;
-		}
-		else if (prev)
+		if (prev)
 			prev->next = new;
 		else
 			head = new;
