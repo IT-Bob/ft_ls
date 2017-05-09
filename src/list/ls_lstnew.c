@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/05 17:35:58 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/09 15:33:33 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_elem	*ls_lstnew(char *name, char *path, struct stat stat)
 {
 	t_elem	*element;
 
-	if ((element = (t_elem*)malloc(sizeof(t_elem) + (sizeof(char*) * 2))))
+	if ((element = (t_elem*)ft_memalloc(sizeof(t_elem))))
 	{
 		if ((element->name = (name ? ft_strnew(ft_strlen(name)) : NULL)))
 			element->name = ft_strcpy(element->name, name);
