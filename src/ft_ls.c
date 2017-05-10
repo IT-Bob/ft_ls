@@ -44,7 +44,7 @@ void	find_elem(char **argv, int size, t_ls *ls)
 	}
 	ls_nonex(&nonex);
 	ls_files(&files);
-	ls_direc(&direc);
+	ls_direc(&direc, ls);
 }
 
 int	main(int argc, char **argv)
