@@ -27,6 +27,7 @@ PTC =\
 $(SRC)ft_ls.c\
 $(DRT)add.c\
 $(FLG)find.c $(FLG)error.c\
+$(FLS)add.c\
 $(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstdel.c $(LST)ls_lstiter.c $(LST)ls_lstiter_reverse.c $(LST)ls_lstnew.c $(LST)print.c\
 $(NOE)add.c  $(NOE)error.c
 

@@ -50,12 +50,7 @@ void	find_elem(char **argv, int size, t_ls *ls)
 		else if (S_ISDIR(s.st_mode))
 			direc = add_direc(direc, argv[i], ls, s);
 		else
-		{
-			files = (ls->flags[4] ?
-					ls_lstaddtime(&files, ls_lstnew(argv[i], "", s)) :
-					ls_lstaddalpha(&files, ls_lstnew(argv[i], "", s)));
-			ls->nb_files = 1;
-		}
+			files = add_direc(files, argv[i], ls, s);
 	}
 	ls_nonex(nonex, ls);
 	ls_lstiter(files, &print_name);
