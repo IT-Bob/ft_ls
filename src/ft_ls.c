@@ -40,7 +40,7 @@ void	find_elem(char **argv, int size, t_ls *ls)
 		else if (S_ISDIR(s.st_mode))
 			direc = add_direc(direc, argv[i], ls, s);
 		else
-			files = add_direc(files, argv[i], ls, s);
+			files = add_files(files, argv[i], ls, s);
 	}
 	ls_nonex(&nonex);
 	ls_files(&files);
