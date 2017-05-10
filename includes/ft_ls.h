@@ -34,6 +34,7 @@ typedef struct	s_ls
 {
 	int	flags[NB_FLAG];
 	int	error;
+	int	nb_dir;
 }				t_ls;
 
 typedef struct	s_elem
@@ -68,6 +69,6 @@ void			print_path(t_elem *path);
 ** src/nonex
 */
 
-void			ls_nonex(t_list *list, t_ls ls);
+void			ls_nonex(t_list *list, t_ls *ls);
 
 #endif

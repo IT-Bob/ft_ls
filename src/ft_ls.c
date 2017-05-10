@@ -29,7 +29,7 @@ void	delete(void *list, size_t size)
 
 #include <unistd.h>
 #include <sys/stat.h>
-void	find_elem(char **argv, int size, t_ls ls)
+void	find_elem(char **argv, int size, t_ls *ls)
 {
 	int			i;
 	struct stat	s;
@@ -49,18 +49,21 @@ void	find_elem(char **argv, int size, t_ls ls)
 			nonex = ft_lstaddalpha(&nonex,
 					ft_lstnew(argv[i], ft_strlen(argv[i])));
 		else if (S_ISDIR(s.st_mode))
-			direc = (ls.flags[4] ?
+		{	
+			direc = (ls->flags[4] ?
 					ls_lstaddtime(&direc, ls_lstnew(argv[i], "", s)) :
 					ls_lstaddalpha(&direc, ls_lstnew(argv[i], "", s)));
+			ls->nb_dir += 1;
+		}
 		else
-			files = (ls.flags[4] ?
+			files = (ls->flags[4] ?
 					ls_lstaddtime(&files, ls_lstnew(argv[i], "", s)) :
 					ls_lstaddalpha(&files, ls_lstnew(argv[i], "", s)));
 	}
 	ls_nonex(nonex, ls);
-	ft_putendl("");
 	ls_lstiter(files, &print_name);
-	ft_putendl("");
+	if (files && direc)
+		ft_putendl("");
 	ls_lstiter(direc, &print_name);
 	ft_lstdel(&nonex, &delete);
 	//ls_lstdel(&files);
@@ -75,11 +78,12 @@ int	main(int argc, char **argv)
 
 	i = 1;
 	ls.error = 0;
+	ls.nb_dir = 0;
 	fill_tab(ls.flags, NB_FLAG, 0);
 	if (argc > 1)
 	{
 		i += find_flags(&argv[i], ls.flags);
-		find_elem(&argv[i], argc - i, ls);
+		find_elem(&argv[i], argc - i, &ls);
 	}
 	/*else
 		print_directory(".", NULL);*/

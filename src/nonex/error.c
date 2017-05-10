@@ -13,12 +13,12 @@
 #include "ft_ls.h"
 #include "ft_printf.h"
 
-void	ls_nonex(t_list *list, t_ls ls)
+void	ls_nonex(t_list *list, t_ls *ls)
 {
 	while (list)
 	{
 		ft_printf("%s: %s: No such file or directory\n", NAME, list->content);
 		list = list->next;
-		ls.error = 1;
+		ls->error = 1;
 	}
 }
