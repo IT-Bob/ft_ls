@@ -25,7 +25,7 @@
 # include "libft.h"
 # include <sys/stat.h>
 
-# define NAME		"ls"
+# define NAME		"ft_ls"
 # define FLAGS_NAME	"Ralrt1"
 # define FLAGS		"Ralrt1"
 # define NB_FLAG	6
