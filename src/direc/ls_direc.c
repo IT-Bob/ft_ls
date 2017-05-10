@@ -7,7 +7,10 @@ void	ls_direc(t_elem **direc, t_ls *ls)
 	{
 		if (ls && ls->nb_files)
 			ft_putchar('\n');
-		ls_lstiter(*direc, &print_name);
+		if (ls && ls->flags[3])
+			ls_lstiter_reverse(*direc, &print_name);
+		else
+			ls_lstiter(*direc, &print_name);
 		//ft_lstdel(direc, &del);
 	}
 }
