@@ -1,11 +1,14 @@
 #include "ft_ls.h"
 #include "libft.h"
 
-void	ls_files(t_elem **files)
+void	ls_files(t_elem **files, t_ls *ls)
 {
 	if (*files)
 	{
-		ls_lstiter(*files, &print_name);
+		if (ls && ls->flags[3])
+			ls_lstiter_reverse(*files, &print_name);
+		else
+			ls_lstiter(*files, &print_name);
 		//ft_lstdel(nonex, &del);
 	}
 }

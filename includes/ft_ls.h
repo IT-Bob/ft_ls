@@ -25,7 +25,7 @@
 # include "libft.h"
 # include <sys/stat.h>
 
-# define NAME		"ft_ls"
+# define NAME		"ls"
 # define FLAGS_NAME	"Ralrt1"
 # define FLAGS		"Ralrt1"
 # define NB_FLAG	6
@@ -78,7 +78,7 @@ void			ls_direc(t_elem **direc, t_ls *ls);
 */
 
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
-void			ls_files(t_elem **files);
+void			ls_files(t_elem **files, t_ls *ls);
 
 /*
 ** src/nonex
