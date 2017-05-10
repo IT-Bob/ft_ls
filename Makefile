@@ -25,7 +25,7 @@ DRT = $(SRC)direc/
 
 PTC =\
 $(SRC)ft_ls.c\
-$(DRT)add.c\
+$(DRT)add.c $(DRT)ls_direc.c\
 $(FLG)find.c $(FLG)error.c\
 $(FLS)add.c $(FLS)ls_files.c\
 $(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstdel.c $(LST)ls_lstiter.c $(LST)ls_lstiter_reverse.c $(LST)ls_lstnew.c $(LST)print.c\
