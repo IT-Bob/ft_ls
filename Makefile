@@ -13,8 +13,9 @@
 NAME = ft_ls
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-CPPFLAGS = -I includes/ -I libft/includes/
+CPPFLAGS = -I $(LSINC) -I libft/includes/
 CLIB = -L libft/ -lft
+LSINC = includes/
 SRC = src/
 FLG = $(SRC)flags/
 STR = $(SRC)struct/
@@ -40,7 +41,7 @@ $(LIB):
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(PTO)
+$(NAME): $(LIB) $(PTO) $(LSINC)ft_ls.h
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(CLIB) $(PTO) -o $(NAME)
 
 clean:
