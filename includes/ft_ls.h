@@ -89,4 +89,10 @@ void			del(void *list, size_t size);
 void			ls_nonex(t_list **nonex);
 void			print_nonex(t_list *list);
 
+/*
+** src/print
+*/
+
+void			print_directory(char *path, t_ls *ls);
+
 #endif

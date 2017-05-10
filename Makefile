@@ -22,6 +22,7 @@ FLS = $(SRC)files/
 LST = $(SRC)list/
 NOE = $(SRC)nonex/
 DRT = $(SRC)direc/
+PRT = $(SRC)print/
 
 PTC =\
 $(SRC)ft_ls.c\
@@ -29,7 +30,8 @@ $(DRT)add.c $(DRT)ls_direc.c\
 $(FLG)find.c $(FLG)error.c\
 $(FLS)add.c $(FLS)ls_files.c\
 $(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstdel.c $(LST)ls_lstiter.c $(LST)ls_lstiter_reverse.c $(LST)ls_lstnew.c $(LST)print.c\
-$(NOE)add.c $(NOE)error.c $(NOE)del.c $(NOE)ls_nonex.c
+$(NOE)add.c $(NOE)error.c $(NOE)del.c $(NOE)ls_nonex.c\
+$(PRT)print_directory.c
 
 PTO = $(PTC:.c=.o)
 
