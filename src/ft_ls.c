@@ -62,7 +62,7 @@ int			main(int argc, char **argv)
 		i += find_flags(&argv[i], ls.flags);
 		find_elem(&argv[i], argc - i, &ls);
 	}
-	/*else
-		print_directory(".", NULL);*/
+	else
+		print_directory(".", NULL);
 	return (ls.error);
 }
