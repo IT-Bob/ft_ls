@@ -48,12 +48,7 @@ void	find_elem(char **argv, int size, t_ls *ls)
 		if (!s.st_ino)
 			nonex = add_nonex(nonex, argv[i]);
 		else if (S_ISDIR(s.st_mode))
-		{	
-			direc = (ls->flags[4] ?
-					ls_lstaddtime(&direc, ls_lstnew(argv[i], "", s)) :
-					ls_lstaddalpha(&direc, ls_lstnew(argv[i], "", s)));
-			ls->nb_direc = 1;
-		}
+			direc = add_direc(direc, argv[i], ls, s);
 		else
 		{
 			files = (ls->flags[4] ?

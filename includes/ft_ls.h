@@ -67,6 +67,12 @@ void			print_name(t_elem *elem);
 void			print_path(t_elem *path);
 
 /*
+** src/direc
+*/
+
+t_elem			*add_direc(t_elem *direc, char *name, t_ls *ls, struct stat s);
+
+/*
 ** src/nonex
 */
 
