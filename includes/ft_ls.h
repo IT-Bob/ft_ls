@@ -82,7 +82,9 @@ t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
 ** src/nonex
 */
 
-t_list			*add_nonex(t_list *nonex, char *name);
-void			ls_nonex(t_list *list, t_ls *ls);
+t_list			*add_nonex(t_list *nonex, char *name, t_ls *ls);
+void			del(void *list, size_t size);
+void			ls_nonex(t_list **nonex);
+void			print_nonex(t_list *list);
 
 #endif

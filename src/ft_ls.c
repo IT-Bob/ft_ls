@@ -17,16 +17,6 @@ void	print(t_list *list)
 	ft_putendl(list->content);
 }
 
-#include <stdlib.h>
-void	delete(void *list, size_t size)
-{
-	if (size)
-		;
-	if (list)
-		free(list);
-	list = NULL;
-}
-
 #include <unistd.h>
 #include <sys/stat.h>
 void	find_elem(char **argv, int size, t_ls *ls)
@@ -46,18 +36,17 @@ void	find_elem(char **argv, int size, t_ls *ls)
 		s.st_ino = 0;
 		lstat(argv[i], &s);
 		if (!s.st_ino)
-			nonex = add_nonex(nonex, argv[i]);
+			nonex = add_nonex(nonex, argv[i], ls);
 		else if (S_ISDIR(s.st_mode))
 			direc = add_direc(direc, argv[i], ls, s);
 		else
 			files = add_direc(files, argv[i], ls, s);
 	}
-	ls_nonex(nonex, ls);
+	ls_nonex(&nonex);
 	ls_lstiter(files, &print_name);
 	if (files && direc)
 		ft_putendl("");
 	ls_lstiter(direc, &print_name);
-	ft_lstdel(&nonex, &delete);
 	//ls_lstdel(&files);
 	//ls_lstdel(&direc);
 	//sleep(5);
