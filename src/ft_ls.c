@@ -11,14 +11,9 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void	print(t_list *list)
-{
-	ft_putendl(list->content);
-}
-
 #include <unistd.h>
 #include <sys/stat.h>
+
 void	find_elem(char **argv, int size, t_ls *ls)
 {
 	int			i;
@@ -47,16 +42,21 @@ void	find_elem(char **argv, int size, t_ls *ls)
 	ls_direc(&direc, ls);
 }
 
+static void	initialise(t_ls *ls)
+{
+	ls->error = 0;
+	ls->nb_direc = 0;
+	ls->nb_files = 0;
+	fill_tab(ls->flags, NB_FLAG, 0);
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
 	t_ls	ls;
 
 	i = 1;
-	ls.error = 0;
-	ls.nb_direc = 0;
-	ls.nb_files = 0;
-	fill_tab(ls.flags, NB_FLAG, 0);
+	initialise(&ls);
 	if (argc > 1)
 	{
 		i += find_flags(&argv[i], ls.flags);
