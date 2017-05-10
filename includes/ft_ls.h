@@ -77,6 +77,7 @@ t_elem			*add_direc(t_elem *direc, char *name, t_ls *ls, struct stat s);
 */
 
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
+void			ls_files(t_elem **files);
 
 /*
 ** src/nonex

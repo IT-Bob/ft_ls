@@ -43,7 +43,7 @@ void	find_elem(char **argv, int size, t_ls *ls)
 			files = add_direc(files, argv[i], ls, s);
 	}
 	ls_nonex(&nonex);
-	ls_lstiter(files, &print_name);
+	ls_files(&files);
 	if (files && direc)
 		ft_putendl("");
 	ls_lstiter(direc, &print_name);
