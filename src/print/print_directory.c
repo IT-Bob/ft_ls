@@ -6,25 +6,31 @@
 
 void	print_directory(char *path, t_ls *ls)
 {
-	DIR				*direc;
+	DIR				*fold;
 	struct dirent	*content;
 	struct stat		stat;
 	t_elem			*elem;
+	t_elem			*direc;
 
 	char *str = ft_strjoin(path, "/");
-	if ((direc = opendir(path)))
+	if ((fold = opendir(path)))
 	{
-		if (ls && ls->nb_direc > 1)
+		if (ls && (ls->nb_direc > 1 || ls->flags[0]))
 			ft_printf("%s:\n", path);
 		elem = NULL;
-		while((content = readdir(direc)))
+		direc = NULL;
+		while((content = readdir(fold)))
 		{
 			stat.st_ino = 0;
 			lstat(ft_strjoin(str, content->d_name), &stat);
 			if (content->d_name[0] != '.' || (ls && ls->flags[1]))
 				elem = add_files(elem, content->d_name, ls, stat);
+			if (content->d_name[0] != '.' && ls && ls->flags[0] && S_ISDIR(stat.st_mode))
+				direc = add_direc(direc, ft_strjoin(str, content->d_name), ls, stat);
 		}
 		ls_files(&elem, ls);
-		closedir(direc);
+		if (direc)
+			ls_direc(&direc, ls);
+		closedir(fold);
 	}
 }
