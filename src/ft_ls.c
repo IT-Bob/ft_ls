@@ -46,19 +46,21 @@ void	find_elem(char **argv, int size, t_ls *ls)
 		s.st_ino = 0;
 		lstat(argv[i], &s);
 		if (!s.st_ino)
-			nonex = ft_lstaddalpha(&nonex,
-					ft_lstnew(argv[i], ft_strlen(argv[i])));
+			nonex = add_nonex(nonex, argv[i]);
 		else if (S_ISDIR(s.st_mode))
 		{	
 			direc = (ls->flags[4] ?
 					ls_lstaddtime(&direc, ls_lstnew(argv[i], "", s)) :
 					ls_lstaddalpha(&direc, ls_lstnew(argv[i], "", s)));
-			ls->nb_dir += 1;
+			ls->nb_direc = 1;
 		}
 		else
+		{
 			files = (ls->flags[4] ?
 					ls_lstaddtime(&files, ls_lstnew(argv[i], "", s)) :
 					ls_lstaddalpha(&files, ls_lstnew(argv[i], "", s)));
+			ls->nb_files = 1;
+		}
 	}
 	ls_nonex(nonex, ls);
 	ls_lstiter(files, &print_name);
@@ -78,7 +80,8 @@ int	main(int argc, char **argv)
 
 	i = 1;
 	ls.error = 0;
-	ls.nb_dir = 0;
+	ls.nb_direc = 0;
+	ls.nb_files = 0;
 	fill_tab(ls.flags, NB_FLAG, 0);
 	if (argc > 1)
 	{
