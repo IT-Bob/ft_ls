@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-void	find_elem(char **argv, int size, t_ls *ls)
+static void	find_elem(char **argv, int size, t_ls *ls)
 {
 	int			i;
 	struct stat	s;
@@ -50,7 +50,7 @@ static void	initialise(t_ls *ls)
 	fill_tab(ls->flags, NB_FLAG, 0);
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	int		i;
 	t_ls	ls;
