@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:30:37 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:28:21 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 #include "ft_printf.h"
 #include <sys/stat.h>
 #include <dirent.h>
-
-/*
- ** ajout dans une liste des dossiers à corriger pour les dossier commencant par .
- */
-
-static int		is_folder(const char *name, int flag)
-{
-	if (name)
-		if ((!ft_strcmp(name, ".") || !ft_strcmp(name, "./")
-				|| !ft_strcmp(name, "..") || !ft_strcmp(name, "../")) || 
-				(name[0] == '.' && !flag))
-			return (0);
-	return (1);
-}
 
 static char		*concat(const char *path, const char *name)
 {
@@ -49,7 +35,6 @@ static char		*concat(const char *path, const char *name)
 
 static t_elem	*read_dir(DIR *fold, char *path, t_ls *ls)
 {
-
 	struct dirent	*d;
 	struct stat		s;
 	t_elem			*elem;
@@ -58,14 +43,14 @@ static t_elem	*read_dir(DIR *fold, char *path, t_ls *ls)
 
 	elem = NULL;
 	direc = NULL;
-	while((d = readdir(fold)))
+	while ((d = readdir(fold)))
 	{
 		s.st_ino = 0;
 		str = concat(path, d->d_name);
 		lstat(str, &s);
 		if (d->d_name[0] != '.' || (ls && ls->flags[1]))
 			elem = add_files(elem, d->d_name, ls, s);
-		if (is_folder(d->d_name, ls->flags[1]) && ls->flags[0] && S_ISDIR(s.st_mode))
+		if (d->d_name[0] != '.' && ls && ls->flags[0] && S_ISDIR(s.st_mode))
 			direc = add_direc(direc, str, ls, s);
 		ft_strdel(&str);
 	}
@@ -73,19 +58,25 @@ static t_elem	*read_dir(DIR *fold, char *path, t_ls *ls)
 	return (direc);
 }
 
-
 void			print_directory(char *path, t_ls *ls)
 {
 	DIR				*fold;
 	t_elem			*direc;
 
+	if (ls && ((ls->nb_direc > 1) || ls->nb_nonex))
+		ft_printf("%s:\n", path);
 	if ((fold = opendir(path)))
 	{
-		if (ls && (ls->nb_direc > 1))
-			ft_printf("%s:\n", path);
 		direc = read_dir(fold, path, ls);
 		if (direc)
 			ls_direc(&direc, ls);
 		closedir(fold);
+	}
+	else
+	{
+		ft_putstr_fd(NAME, 2);
+		ft_putstr_fd(": ", 2);
+		perror(path);
+		ls->error = 1;
 	}
 }

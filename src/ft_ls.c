@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:07:02 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:28:33 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	initialise(t_ls *ls)
 	ls->error = 0;
 	ls->nb_direc = 0;
 	ls->nb_files = 0;
+	ls->nb_nonex = 0;
 	fill_tab(ls->flags, NB_FLAG, 0);
 }
 

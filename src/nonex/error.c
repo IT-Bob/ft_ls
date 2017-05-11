@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 20:07:20 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 09:24:16 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:08:48 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	print_nonex(t_list *list)
 {
 	while (list)
 	{
-		ft_printf("%s: %s: No such file or directory\n", NAME, list->content);
+		ft_putstr_fd(NAME, 2);
+		ft_putstr_fd(": ", 2);
+		perror(list->content);
 		list = list->next;
 	}
 }

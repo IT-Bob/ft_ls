@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 12:38:31 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:27:23 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_ls
 	int	error;
 	int	nb_direc;
 	int	nb_files;
+	int	nb_nonex;
 }				t_ls;
 
 typedef struct	s_elem
