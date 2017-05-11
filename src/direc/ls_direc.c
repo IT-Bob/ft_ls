@@ -33,6 +33,6 @@ void		ls_direc(t_elem **direc, t_ls *ls)
 			lstiter_reverse(*direc, ls, &print_directory);
 		else
 			lstiter(*direc, ls, &print_directory);
-		//ft_lstdel(direc, &del);
+		ls_lstdel(direc);
 	}
 }

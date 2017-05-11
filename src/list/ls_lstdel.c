@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 17:16:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 17:52:17 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 10:15:45 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ls_lstdelone(t_elem **elem)
 {
-	if (elem && *elem)
+	if (elem)
 	{
 		if ((*elem)->name)
 			free((*elem)->name);
@@ -23,9 +23,8 @@ void	ls_lstdelone(t_elem **elem)
 		if ((*elem)->path)
 			free((*elem)->path);
 		(*elem)->path = NULL;
-		if (*elem)
-			free(elem);
-		elem = NULL;
+		free(*elem);
+		*elem = NULL;
 	}
 }
 
