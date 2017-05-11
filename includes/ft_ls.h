@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 10:34:42 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 12:38:31 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_elem			*ls_lstaddtime(t_elem **alst, t_elem *new);
 void			ls_lstdel(t_elem **elem);
 void			ls_lstiter(t_elem *lst, void(*f)(t_elem*));
 void			ls_lstiter_reverse(t_elem *list, void (*f)(t_elem*));
-t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
+t_elem			*ls_lstnew(char *name, struct stat stat);
 void			print_name(t_elem *elem);
 void			print_path(t_elem *path);
 

@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 10:50:55 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 11:56:28 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			main(int argc, char **argv)
 		i += find_flags(&argv[i], ls.flags);
 		find_elem(&argv[i], argc - i, &ls);
 	}
-	else
+	if (argc == 1 || i == argc)
 		print_directory(".", NULL);
 	return (ls.error);
 }

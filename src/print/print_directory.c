@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 10:46:25 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 13:38:35 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,65 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
-void	print_directory(char *path, t_ls *ls)
+/*
+ ** ajout dans une liste des dossiers à corriger pour les dossier commencant par .
+ */
+static char		*concat(const char *path, const char *name)
 {
-	if (path || ls)
-		;
-	/*DIR				*fold;
-	struct dirent	*content;
-	struct stat		stat;
+	int		size;
+	char	*concat;
+
+	concat = NULL;
+	if (path && name)
+	{
+		size = ft_strlen(path) + 1 + ft_strlen(name);
+		concat = ft_strnew(size);
+		concat = ft_strcpy(concat, path);
+		concat = ft_strcat(concat, "/");
+		concat = ft_strcat(concat, name);
+	}
+	return (concat);
+}
+
+static t_elem	*read_dir(DIR *fold, char *path, t_ls *ls)
+{
+
+	struct dirent	*d;
+	struct stat		s;
 	t_elem			*elem;
 	t_elem			*direc;
+	char			*str;
 
-	char *str = ft_strjoin(path, "/");
+	elem = NULL;
+	direc = NULL;
+	while((d = readdir(fold)))
+	{
+		s.st_ino = 0;
+		str = concat(path, d->d_name);
+		lstat(str, &s);
+		if (d->d_name[0] != '.' || (ls && ls->flags[1]))
+			elem = add_files(elem, d->d_name, ls, s);
+		if (d->d_name[0] != '.' && ls && ls->flags[0] && S_ISDIR(s.st_mode))
+			direc = add_direc(direc, str, ls, s);
+		ft_strdel(&str);
+	}
+	ls_files(&elem, ls);
+	return (direc);
+}
+
+
+void			print_directory(char *path, t_ls *ls)
+{
+	DIR				*fold;
+	t_elem			*direc;
+
 	if ((fold = opendir(path)))
 	{
-		if (ls && (ls->nb_direc > 1 || ls->flags[0]))
+		if (ls && (ls->nb_direc > 1))
 			ft_printf("%s:\n", path);
-		elem = NULL;
-		direc = NULL;
-		while((content = readdir(fold)))
-		{
-			stat.st_ino = 0;
-			lstat(ft_strjoin(str, content->d_name), &stat);
-			if (content->d_name[0] != '.' || (ls && ls->flags[1]))
-				elem = add_files(elem, content->d_name, ls, stat);
-			if (content->d_name[0] != '.' && ls && ls->flags[0] && S_ISDIR(stat.st_mode))
-				direc = add_direc(direc, ft_strjoin(str, content->d_name), ls, stat);
-		}
-		ls_files(&elem, ls);
+		direc = read_dir(fold, path, ls);
 		if (direc)
 			ls_direc(&direc, ls);
 		closedir(fold);
-	}*/
+	}
 }
