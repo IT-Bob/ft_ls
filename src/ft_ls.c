@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 20:20:52 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 09:18:55 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 		else
 			files = add_files(files, argv[i], ls, s);
 	}
-	ls_nonex(&nonex);
-	ls_files(&files, ls);
-	ls_direc(&direc, ls);
+	 ls_nonex(&nonex);
+//	ls_files(&files, ls);
+//	ls_direc(&direc, ls);
 }
 
 static void	initialise(t_ls *ls)
