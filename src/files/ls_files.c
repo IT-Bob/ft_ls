@@ -9,6 +9,6 @@ void	ls_files(t_elem **files, t_ls *ls)
 			ls_lstiter_reverse(*files, &print_name);
 		else
 			ls_lstiter(*files, &print_name);
-		//ft_lstdel(nonex, &del);
+		ls_lstdel(files);
 	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_directory.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
+/*   Updated: 2017/05/11 10:46:25 by aguerin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 #include "libft.h"
 #include "ft_printf.h"
@@ -6,7 +18,9 @@
 
 void	print_directory(char *path, t_ls *ls)
 {
-	DIR				*fold;
+	if (path || ls)
+		;
+	/*DIR				*fold;
 	struct dirent	*content;
 	struct stat		stat;
 	t_elem			*elem;
@@ -32,5 +46,5 @@ void	print_directory(char *path, t_ls *ls)
 		if (direc)
 			ls_direc(&direc, ls);
 		closedir(fold);
-	}
+	}*/
 }

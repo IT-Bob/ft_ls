@@ -1,11 +1,11 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	del(void *list, size_t size)
+void	del(void *content, size_t size)
 {
 	if (size)
 		;
-	if (list)
-		free(list);
-	list = NULL;
+	if (content)
+		free(content);
+	content = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 20:19:55 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 10:34:42 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void			ls_files(t_elem **files, t_ls *ls);
 */
 
 t_list			*add_nonex(t_list *nonex, char *name, t_ls *ls);
-void			del(void *list, size_t size);
+void			del(void *content, size_t size);
 void			ls_nonex(t_list **nonex);
 void			print_nonex(t_list *list);
 

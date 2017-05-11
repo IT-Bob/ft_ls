@@ -3,6 +3,8 @@
 
 t_elem	*add_direc(t_elem *direc, char *name, t_ls *ls, struct stat s)
 {
+	if (name || s.st_ino)
+			;
 	if (ls->flags[4])
 		direc = ls_lstaddtime(&direc, ls_lstnew(name, name, s));
 	else
