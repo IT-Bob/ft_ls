@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   just_name.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 20:07:20 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 17:00:27 by aguerin          ###   ########.fr       */
+/*   Created: 2017/05/11 16:51:54 by aguerin           #+#    #+#             */
+/*   Updated: 2017/05/11 16:52:04 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-#include "ft_printf.h"
-
-void	print_nonex(t_list *list, t_ls *ls)
+char *just_name(char *name)
 {
-	while (list)
-	{
-		put_error(list->content, ls);
-		list = list->next;
-	}
+	int	i;
+	int	find;
+
+	i = -1;
+	find = 0;
+	while (name[++i])
+		if (name[i] == '/')
+			find = i + 1;
+	return (&name[find]);
 }

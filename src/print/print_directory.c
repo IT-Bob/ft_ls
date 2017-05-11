@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:28:21 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:54:08 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,5 @@ void			print_directory(char *path, t_ls *ls)
 		closedir(fold);
 	}
 	else
-	{
-		ft_putstr_fd(NAME, 2);
-		ft_putstr_fd(": ", 2);
-		perror(path);
-		ls->error = 1;
-	}
+		put_error(path, ls);
 }

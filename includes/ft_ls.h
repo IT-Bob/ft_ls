@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:27:23 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:59:52 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct	s_elem
 }				t_elem;
 
 /*
+** src/
+*/
+void			put_error(char *path, t_ls *ls);
+char			*just_name(char *name);
+
+/*
 ** src/flags
 */
 
@@ -87,8 +93,8 @@ void			ls_files(t_elem **files, t_ls *ls);
 
 t_list			*add_nonex(t_list *nonex, char *name, t_ls *ls);
 void			del(void *content, size_t size);
-void			ls_nonex(t_list **nonex);
-void			print_nonex(t_list *list);
+void			ls_nonex(t_list **nonex, t_ls *ls);
+void			print_nonex(t_list *list, t_ls *ls);
 
 /*
 ** src/print
