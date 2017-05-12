@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:59:52 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/12 15:45:03 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct	s_ls
 typedef struct	s_elem
 {
 	char			*name;
-	char			*path;
 	struct stat		stat;
 	struct s_elem	*next;
 }				t_elem;
@@ -50,7 +49,7 @@ typedef struct	s_elem
 /*
 ** src/
 */
-void			put_error(char *path, t_ls *ls);
+void			put_error(t_elem *elem, t_ls *ls);
 char			*just_name(char *name);
 
 /*
@@ -100,6 +99,6 @@ void			print_nonex(t_list *list, t_ls *ls);
 ** src/print
 */
 
-void			print_directory(char *path, t_ls *ls);
+void			print_directory(t_elem *list, t_ls *ls);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 17:07:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 17:09:50 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/12 13:25:46 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,4 @@
 void	print_name(t_elem *elem)
 {
 	ft_putendl(elem->name);
-}
-
-void	print_path(t_elem *elem)
-{
-	ft_putendl(elem->path);
 }

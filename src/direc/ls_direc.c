@@ -6,29 +6,29 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:52:55 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:27:47 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/12 13:31:09 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
 
-static void	lstiter_reverse(t_elem *lst, t_ls *ls, void (*f)(char *, t_ls *))
+static void	lstiter_reverse(t_elem *lst, t_ls *ls, void (*f)(t_elem *, t_ls *))
 {
 	if (lst)
 	{
 		lstiter_reverse(lst->next, ls, f);
 		if (lst->next)
 			ft_putchar('\n');
-		f(lst->name, ls);
+		f(lst, ls);
 	}
 }
 
-static void	lstiter(t_elem *lst, t_ls *ls, void (*f)(char *, t_ls *))
+static void	lstiter(t_elem *lst, t_ls *ls, void (*f)(t_elem *, t_ls *))
 {
 	while (lst)
 	{
-		f(lst->name, ls);
+		f(lst, ls);
 		lst = lst->next;
 		if (lst)
 			ft_putchar('\n');
