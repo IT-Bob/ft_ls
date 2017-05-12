@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:54:08 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/12 10:09:50 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static char		*concat(const char *path, const char *name)
 		size = ft_strlen(path) + 1 + ft_strlen(name);
 		concat = ft_strnew(size);
 		concat = ft_strcpy(concat, path);
-		concat = ft_strcat(concat, "/");
+		if (ft_strcmp(path, "/"))
+			concat = ft_strcat(concat, "/");
 		concat = ft_strcat(concat, name);
 	}
 	return (concat);
