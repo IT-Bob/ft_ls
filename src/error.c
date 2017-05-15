@@ -6,14 +6,27 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/12 15:51:02 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/15 11:01:20 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
 
-void	put_error(t_elem *elem, t_ls *ls)
+static char *just_name(char *name)
+{
+	int	i;
+	int	find;
+
+	i = -1;
+	find = 0;
+	while (name[++i])
+		if (name[i] == '/')
+			find = i + 1;
+	return (&name[find]);
+}
+
+void		put_error(t_elem *elem, t_ls *ls)
 {
 	char	*name;
 

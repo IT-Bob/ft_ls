@@ -6,7 +6,7 @@
 #    By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 17:18:16 by aguerin           #+#    #+#              #
-#    Updated: 2017/05/11 16:52:50 by aguerin          ###   ########.fr        #
+#    Updated: 2017/05/15 10:57:50 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ DRT = $(SRC)direc/
 PRT = $(SRC)print/
 
 PTC =\
-$(SRC)error.c $(SRC)ft_ls.c $(SRC)just_name.c\
+$(SRC)error.c $(SRC)ft_ls.c\
 $(DRT)add.c $(DRT)ls_direc.c\
 $(FLG)find.c $(FLG)error.c\
 $(FLS)add.c $(FLS)ls_files.c\

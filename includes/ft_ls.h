@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/12 15:45:03 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/15 10:58:46 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct	s_elem
 /*
 ** src/
 */
+
 void			put_error(t_elem *elem, t_ls *ls);
-char			*just_name(char *name);
 
 /*
 ** src/flags
