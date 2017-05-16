@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/15 11:01:20 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/16 13:55:29 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static char *just_name(char *name)
 void		put_error(t_elem *elem, t_ls *ls)
 {
 	char	*name;
-
-	name = just_name(elem->name);
+	
+	  name = just_name(elem->name);
 	ft_putstr_fd(NAME, 2);
 	ft_putstr_fd(":", 2);
 	if (name[0])
