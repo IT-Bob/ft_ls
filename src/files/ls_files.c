@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/16 15:00:14 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/16 15:30:37 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,31 @@ static void permissions(mode_t st_mode)
 	perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
 	while (i < 10)
 		ft_putchar(perm[i++]);
-	ft_putendl(" ");
+	ft_putstr("  ");
 }
 static void	print_all(t_elem *elem)
 {
-//	struct passwd	*pwd;
-//	struct group	*grp;
-	
-//	pwd = NULL;
+	struct passwd	*pwd;
+	struct group	*grp;
+	char			*date;
+
+	pwd = NULL;
 	if (elem)
 	{
-		/*pwd = getpwuid(elem->stat.st_uid);
-		grp = getgrgid(elem->stat.st_gid);
+		permissions(elem->stat.st_mode);
+		pwd = getpwuid(elem->stat.st_uid);
 		ft_putnbrs(elem->stat.st_nlink);
+		grp = getgrgid(elem->stat.st_gid);
 		ft_putstrs(pwd->pw_name);
 		ft_putstrs(grp->gr_name);
 		ft_putnbrs(elem->stat.st_size);
-		ft_putstrs(ctime(&elem->stat.st_mtime));
-		if (elem->stat.st_mode & S_IRUSR)
-			ft_putchar('*');
-		*/permissions(elem->stat.st_mode);
-		/*ft_putendl(ft_itoa_base(elem->stat.st_mode, 2));
-		ft_putstrs(elem->name);
-		ft_putnbrl(elem->stat.st_blocks);
-*/	}
+		if ((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
+		{
+			ft_putstrs(date);
+			ft_strdel(&date);
+		}
+		ft_putendl(elem->name);
+	}
 }
 
 void	ls_files(t_elem **files, t_ls *ls)
