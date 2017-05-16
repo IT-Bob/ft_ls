@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/15 19:04:31 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/16 15:00:14 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 static void permissions(mode_t st_mode)
 {
-	int	perm[11];
+	int	perm[10];
 	int i;
 
 	i = 0;
@@ -42,16 +42,15 @@ static void permissions(mode_t st_mode)
 	perm[1] = (st_mode & S_IRUSR) ? 'r' : '-';
 	perm[2] = (st_mode & S_IWUSR) ? 'w' : '-';
 	perm[3] = (st_mode & S_IXUSR) ? 'x' : '-';
-	perm[4] = (st_mode & 0000040) ? 'r' : '-';
-	perm[5] = (st_mode & 0000020) ? 'w' : '-';
-	perm[6] = (st_mode & 0000010) ? 'x' : '-';
-	perm[7] = (st_mode & 0000004) ? 'r' : '-';
-	perm[8] = (st_mode & 0000002) ? 'w' : '-';
-	perm[9] = (st_mode & 0000001) ? 'x' : '-';
-	perm[10] = /*(st_mode & S_ISVTX) ? '@' :*/ '-';
-	while (i < 11)
+	perm[4] = (st_mode & S_IRGRP) ? 'r' : '-';
+	perm[5] = (st_mode & S_IWGRP) ? 'w' : '-';
+	perm[6] = (st_mode & S_IXGRP) ? 'x' : '-';
+	perm[7] = (st_mode & S_IROTH) ? 'r' : '-';
+	perm[8] = (st_mode & S_IWOTH) ? 'w' : '-';
+	perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
+	while (i < 10)
 		ft_putchar(perm[i++]);
-	ft_putendl("");
+	ft_putendl(" ");
 }
 static void	print_all(t_elem *elem)
 {
