@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/16 16:37:59 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/16 17:08:13 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ static void permissions(mode_t st_mode)
 		perm[0] = 'b';
 	else if (S_ISLNK(st_mode))
 		perm[0] = 'l';
+	else if (S_ISSOCK(st_mode))
+		perm[0] = 's';
+	/*else if (S_ISWHT(st_mode))
+		perm[0] = 'Y';*/
 	else
 		perm[0] = '-';
 	perm[1] = (st_mode & S_IRUSR) ? 'r' : '-';
 	perm[2] = (st_mode & S_IWUSR) ? 'w' : '-';
-	perm[3] = (st_mode & S_IXUSR) ? 'x' : '-';
+	if (!(st_mode & S_IXUSR) && (st_mode & S_ISUID))
+		perm[3] = 'S';
+	else if ((st_mode & S_IXUSR) && (st_mode & S_ISUID))
+		perm[3] = 's';
+	else
+		perm[3] = (st_mode & S_IXUSR) ? 'x' : '-';
 	perm[4] = (st_mode & S_IRGRP) ? 'r' : '-';
 	perm[5] = (st_mode & S_IWGRP) ? 'w' : '-';
 	perm[6] = (st_mode & S_IXGRP) ? 'x' : '-';
@@ -53,6 +62,7 @@ static void permissions(mode_t st_mode)
 		perm[9] = 't';
 	else
 		perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
+	perm[10] = ' ';
 	while (i < 11)
 		ft_putchar(perm[i++]);
 	ft_putstr("  ");
