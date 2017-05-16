@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/16 15:30:37 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/16 16:37:59 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 static void permissions(mode_t st_mode)
 {
-	int	perm[10];
+	int	perm[11];
 	int i;
 
 	i = 0;
@@ -47,8 +47,13 @@ static void permissions(mode_t st_mode)
 	perm[6] = (st_mode & S_IXGRP) ? 'x' : '-';
 	perm[7] = (st_mode & S_IROTH) ? 'r' : '-';
 	perm[8] = (st_mode & S_IWOTH) ? 'w' : '-';
-	perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
-	while (i < 10)
+	if (!(st_mode & S_IXOTH) && (st_mode & S_ISVTX))
+		perm[9] = 'T';
+	else if ((st_mode & S_IXOTH) && (st_mode & S_ISVTX))
+		perm[9] = 't';
+	else
+		perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
+	while (i < 11)
 		ft_putchar(perm[i++]);
 	ft_putstr("  ");
 }
