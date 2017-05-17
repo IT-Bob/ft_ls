@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/15 11:54:25 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/17 14:58:42 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
+#include <dirent.h>
 static void	find_elem(char **argv, int size, t_ls *ls)
 {
 	int			i;
@@ -30,6 +31,8 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 	{
 		s.st_ino = 0;
 		lstat(argv[i], &s);
+		if (S_ISLNK(s.st_mode))
+			stat(argv[i], &s);
 		if (!s.st_ino)
 			nonex = add_nonex(nonex, argv[i], ls);
 		else if (S_ISDIR(s.st_mode))
