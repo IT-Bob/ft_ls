@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/17 10:10:56 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/17 10:50:31 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <unistd.h>
 static void permissions(mode_t st_mode)
 {
-	int	perm[11];
+	int	perm[10];
 	int i;
 
 	i = 0;
@@ -40,8 +40,6 @@ static void permissions(mode_t st_mode)
 		perm[0] = 'l';
 	else if (S_ISSOCK(st_mode))
 		perm[0] = 's';
-	/*else if (S_ISWHT(st_mode))
-		perm[0] = 'Y';*/
 	else
 		perm[0] = '-';
 	perm[1] = (st_mode & S_IRUSR) ? 'r' : '-';
@@ -68,8 +66,7 @@ static void permissions(mode_t st_mode)
 		perm[9] = 't';
 	else
 		perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
-	perm[10] = ' ';
-	while (i < 11)
+	while (i < 10)
 		ft_putchar(perm[i++]);
 	ft_putstr("  ");
 }
@@ -103,6 +100,7 @@ static void	print_all(t_elem *elem)
 			link = ft_strnew(size);
 			if ((readlink(elem->name, link, size) > 0))
 				ft_printf("-> %s\n", link);
+			ft_strdel(&link);
 		}
 		else
 			ft_putchar('\n');
