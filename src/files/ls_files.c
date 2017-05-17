@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/16 17:11:45 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/17 10:10:56 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <uuid/uuid.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include "ft_printf.h"
+#include <unistd.h>
 static void permissions(mode_t st_mode)
 {
 	int	perm[11];
@@ -77,6 +78,8 @@ static void	print_all(t_elem *elem)
 	struct passwd	*pwd;
 	struct group	*grp;
 	char			*date;
+	char	*link;
+	int		size;
 
 	pwd = NULL;
 	if (elem)
@@ -93,7 +96,16 @@ static void	print_all(t_elem *elem)
 			ft_putstrs(date);
 			ft_strdel(&date);
 		}
-		ft_putendl(elem->name);
+		ft_putstrs(elem->name);
+		if (S_ISLNK(elem->stat.st_mode))
+		{
+			size = elem->stat.st_size;
+			link = ft_strnew(size);
+			if ((readlink(elem->name, link, size) > 0))
+				ft_printf("-> %s\n", link);
+		}
+		else
+			ft_putchar('\n');
 	}
 }
 
