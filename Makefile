@@ -6,7 +6,7 @@
 #    By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 17:18:16 by aguerin           #+#    #+#              #
-#    Updated: 2017/05/15 10:57:50 by aguerin          ###   ########.fr        #
+#    Updated: 2017/05/18 12:34:35 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ PTC =\
 $(SRC)error.c $(SRC)ft_ls.c\
 $(DRT)add.c $(DRT)ls_direc.c\
 $(FLG)find.c $(FLG)error.c\
-$(FLS)add.c $(FLS)ls_files.c\
+$(FLS)add.c $(FLS)long.c $(FLS)ls_files.c\
 $(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstdel.c $(LST)ls_lstiter.c $(LST)ls_lstiter_reverse.c $(LST)ls_lstnew.c $(LST)print.c\
 $(NOE)add.c $(NOE)error.c $(NOE)del.c $(NOE)ls_nonex.c\
 $(PRT)print_directory.c

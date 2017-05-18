@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/15 10:58:46 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:38:10 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void			ls_direc(t_elem **direc, t_ls *ls);
 
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
 void			ls_files(t_elem **files, t_ls *ls);
+void			print_all(t_elem *elem);
 
 /*
 ** src/nonex
