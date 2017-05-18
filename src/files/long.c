@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 12:38:57 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 13:05:30 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void permissions(mode_t st_mode)
 	ft_putstr("  ");
 }
 
-void	print_all(t_elem *elem)
+static void	print_all(t_elem *elem)
 {
 	struct passwd	*pwd;
 	struct group	*grp;
@@ -116,3 +116,20 @@ void	print_all(t_elem *elem)
 	}
 }
 
+void	print_standard_long(t_elem *elem)
+{
+	while (elem)
+	{
+		print_all(elem);
+		elem = elem->next;
+	}
+}
+
+void	print_reverse_long(t_elem *elem)
+{
+	if (elem)
+	{
+		print_reverse_long(elem->next);
+		print_all(elem);
+	}
+}
