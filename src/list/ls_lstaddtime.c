@@ -31,7 +31,7 @@ t_elem	*ls_lstaddtime(t_elem **alst, t_elem *new)
 		if (!lst)
 			return (new);
 		while (lst && ((new->stat.st_mtime < lst->stat.st_mtime) ||
-			((new->stat.st_mtime == lst->stat.st_mtime) && ft_strcmp(new->path, lst->path) > 0)))/*&&
+			((new->stat.st_mtime == lst->stat.st_mtime) && ft_strcmp(new->name, lst->name) > 0)))/*&&
 			(new->stat.st_mtimespec.tv_nsec < new->stat.st_mtimespec.tv_nsec)*/
 		{
 			prev = lst;

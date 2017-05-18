@@ -14,5 +14,5 @@
 
 void	print_name(t_elem *elem)
 {
-	ft_putendl(elem->path);
+	ft_putendl(elem->name);
 }

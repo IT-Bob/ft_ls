@@ -6,11 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2017/05/18 16:50:46 by aguerin          ###   ########.fr       */
-=======
-/*   Updated: 2017/05/18 14:25:16 by aguerin          ###   ########.fr       */
->>>>>>> 0698bc3a845cd08614e7058f9f5f98619a24c150
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +34,7 @@ static char		*concat(const char *path, const char *name)
 	return (concat);
 }
 
-static t_elem	*read_dir(DIR *fold, char *path, t_ls *ls)
+static t_elem	*read_dir(DIR *fold, char *name, t_ls *ls)
 {
 	struct dirent	*d;
 	struct stat		s;
@@ -51,7 +47,7 @@ static t_elem	*read_dir(DIR *fold, char *path, t_ls *ls)
 	while ((d = readdir(fold)))
 	{
 		s.st_ino = 0;
-		str = concat(path, d->d_name);
+		str = concat(name, d->d_name);
 		lstat(str, &s);
 		if (d->d_name[0] != '.' || (ls && ls->flags[1]))
 		{
@@ -74,10 +70,10 @@ void			print_directory(t_elem *list, t_ls *ls)
 	t_elem			*direc;
 
 	if (ls && (ls->nb_files || ls->nb_direc > 1 || ls->nb_nonex))
-		ft_printf("%s:\n", list->path);
-	if ((fold = opendir(list->path)))
+		ft_printf("%s:\n", list->name);
+	if ((fold = opendir(list->name)))
 	{
-		direc = read_dir(fold, list->path, ls);
+		direc = read_dir(fold, list->name, ls);
 		if (direc)
 			ls_direc(&direc, ls);
 		closedir(fold);

@@ -30,7 +30,7 @@ t_elem	*ls_lstaddalpha(t_elem **alst, t_elem *new)
 		prev = NULL;
 		if (!lst)
 			return (new);
-		while (lst && (ft_strcmp(new->path, lst->path) > 0))
+		while (lst && (ft_strcmp(new->name, lst->name) > 0))
 		{
 			prev = lst;
 			lst = lst->next;

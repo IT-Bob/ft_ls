@@ -6,21 +6,13 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2017/05/18 17:04:44 by aguerin          ###   ########.fr       */
-=======
-/*   Updated: 2017/05/18 14:21:05 by aguerin          ###   ########.fr       */
->>>>>>> 0698bc3a845cd08614e7058f9f5f98619a24c150
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-<<<<<<< HEAD
-char *just_name(char *name)
-=======
-static char *just_name(char *path)
->>>>>>> 0698bc3a845cd08614e7058f9f5f98619a24c150
+char *just_name(char *path)
 {
 	int	i;
 	int	find;
@@ -36,7 +28,7 @@ static char *just_name(char *path)
 void		put_error(t_elem *elem, t_ls *ls)
 {
 	char	*name;
-	
+
 	name = just_name(elem->path);
 	ft_putstr_fd(NAME, 2);
 	ft_putstr_fd(":", 2);

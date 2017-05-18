@@ -12,9 +12,9 @@
 
 #include "ft_ls.h"
 
-t_list	*add_nonex(t_list *nonex, char *path, t_ls *ls)
+t_list	*add_nonex(t_list *nonex, char *name, t_ls *ls)
 {
-	nonex = ft_lstaddalpha(&nonex, ft_lstnew(path, ft_strlen(path) + 1));
+	nonex = ft_lstaddalpha(&nonex, ft_lstnew(name, ft_strlen(name) + 1));
 	ls->error = 1;
 	ls->nb_nonex = 1;
 	return (nonex);
