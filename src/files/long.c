@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 13:05:30 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 14:22:10 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,15 @@ static void	print_all(t_elem *elem)
 				ft_putstrs(date);
 				ft_strdel(&date);
 			}
-		ft_putstrs(elem->name);
+		ft_putstrs(elem->path);
 		if (S_ISLNK(elem->stat.st_mode))
 		{
 			size = elem->stat.st_size;
 			link = ft_strnew(size);
-			if ((readlink(elem->name, link, size) > 0))
+			if ((readlink(elem->path, link, size) >= 0))
 				ft_printf("-> %s\n", link);
+			else
+				perror(elem->path);
 			ft_strdel(&link);
 		}
 		else

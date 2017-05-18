@@ -6,12 +6,14 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 12:43:07 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 14:25:16 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include "libft.h"
 #include "ft_printf.h"
+#include <sys/stat.h>
 #include <dirent.h>
 
 static char		*concat(const char *path, const char *name)
@@ -63,10 +65,10 @@ void			print_directory(t_elem *list, t_ls *ls)
 	t_elem			*direc;
 
 	if (ls && (ls->nb_files || ls->nb_direc > 1 || ls->nb_nonex))
-		ft_printf("%s:\n", list->name);
-	if ((fold = opendir(list->name)))
+		ft_printf("%s:\n", list->path);
+	if ((fold = opendir(list->path)))
 	{
-		direc = read_dir(fold, list->name, ls);
+		direc = read_dir(fold, list->path, ls);
 		if (direc)
 			ls_direc(&direc, ls);
 		closedir(fold);
