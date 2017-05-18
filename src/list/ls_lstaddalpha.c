@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 12:44:02 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 14:22:32 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_elem	*ls_lstaddalpha(t_elem **alst, t_elem *new)
 		prev = NULL;
 		if (!lst)
 			return (new);
-		while (lst && (ft_strcmp(new->name, lst->name) > 0))
+		while (lst && (ft_strcmp(new->path, lst->path) > 0))
 		{
 			prev = lst;
 			lst = lst->next;

@@ -6,7 +6,11 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/05/18 17:03:00 by aguerin          ###   ########.fr       */
+=======
+/*   Updated: 2017/05/18 14:19:38 by aguerin          ###   ########.fr       */
+>>>>>>> 0698bc3a845cd08614e7058f9f5f98619a24c150
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +45,10 @@ typedef struct	s_ls
 
 typedef struct	s_elem
 {
+<<<<<<< HEAD
 	char			*name;
+=======
+>>>>>>> 0698bc3a845cd08614e7058f9f5f98619a24c150
 	char			*path;
 	struct stat		stat;
 	struct s_elem	*next;
@@ -77,15 +84,19 @@ void			print_path(t_elem *path);
 ** src/direc
 */
 
-t_elem			*add_direc(t_elem *direc, char *name, t_ls *ls, struct stat s);
+t_elem			*add_direc(t_elem *direc, char *path, t_ls *ls, struct stat s);
 void			ls_direc(t_elem **direc, t_ls *ls);
 
 /*
 ** src/files
 */
 
+<<<<<<< HEAD
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
 t_elem			*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s);
+=======
+t_elem			*add_files(t_elem *files, char *path, t_ls *ls, struct stat s);
+>>>>>>> 0698bc3a845cd08614e7058f9f5f98619a24c150
 void			ls_files(t_elem **files, t_ls *ls);
 void			print_reverse_long(t_elem *elem);
 void			print_standard_long(t_elem *elem);
@@ -94,7 +105,7 @@ void			print_standard_long(t_elem *elem);
 ** src/nonex
 */
 
-t_list			*add_nonex(t_list *nonex, char *name, t_ls *ls);
+t_list			*add_nonex(t_list *nonex, char *path, t_ls *ls);
 void			del(void *content, size_t size);
 void			ls_nonex(t_list **nonex, t_ls *ls);
 void			print_nonex(t_list *list, t_ls *ls);
