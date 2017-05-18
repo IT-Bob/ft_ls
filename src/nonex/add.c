@@ -6,12 +6,11 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:49 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:12:37 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:43:18 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 t_list	*add_nonex(t_list *nonex, char *name, t_ls *ls)
 {

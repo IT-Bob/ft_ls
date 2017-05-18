@@ -6,12 +6,11 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/09 20:00:57 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:44:06 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 /*
 ** ls_lstaddalpha() trie les éléments par date de dernière modification en se

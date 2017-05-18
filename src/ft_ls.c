@@ -6,15 +6,12 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/17 14:58:42 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:42:35 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <unistd.h>
-#include <sys/stat.h>
 
-#include <dirent.h>
 static void	find_elem(char **argv, int size, t_ls *ls)
 {
 	int			i;

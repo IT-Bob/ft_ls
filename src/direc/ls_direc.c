@@ -6,12 +6,11 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:52:55 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/12 13:31:09 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:45:31 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 static void	lstiter_reverse(t_elem *lst, t_ls *ls, void (*f)(t_elem *, t_ls *))
 {

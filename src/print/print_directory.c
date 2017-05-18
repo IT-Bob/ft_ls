@@ -6,14 +6,12 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/15 14:31:33 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:43:07 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 #include "ft_printf.h"
-#include <sys/stat.h>
 #include <dirent.h>
 
 static char		*concat(const char *path, const char *name)

@@ -6,12 +6,11 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:54:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:59:33 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:43:48 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 void	ls_nonex(t_list **nonex, t_ls *ls)
 {

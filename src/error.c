@@ -6,12 +6,11 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/16 13:55:29 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 12:42:54 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 static char *just_name(char *name)
 {
