@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/17 10:50:31 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 11:04:36 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <time.h>
 #include "ft_printf.h"
 #include <unistd.h>
+#include <time.h>
 static void permissions(mode_t st_mode)
 {
 	int	perm[10];
@@ -74,9 +75,9 @@ static void	print_all(t_elem *elem)
 {
 	struct passwd	*pwd;
 	struct group	*grp;
-	char			*date;
 	char	*link;
 	int		size;
+	char	*date;
 
 	pwd = NULL;
 	if (elem)
@@ -88,11 +89,19 @@ static void	print_all(t_elem *elem)
 		ft_putstrs(pwd->pw_name);
 		ft_putstrs(grp->gr_name);
 		ft_putnbrs(elem->stat.st_size);
-		if ((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
+		if (time(NULL) - elem->stat.st_mtime > 2628000 * 6)
 		{
-			ft_putstrs(date);
+			ft_putstrs((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 6)));
+			ft_strdel(&date);
+			ft_putstrs((date = ft_strsub(ctime(&elem->stat.st_mtime), 20, 4)));
 			ft_strdel(&date);
 		}
+		else
+			if ((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
+			{
+				ft_putstrs(date);
+				ft_strdel(&date);
+			}
 		ft_putstrs(elem->name);
 		if (S_ISLNK(elem->stat.st_mode))
 		{
