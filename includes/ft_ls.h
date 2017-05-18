@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 12:58:55 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 17:03:00 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_ls
 typedef struct	s_elem
 {
 	char			*name;
+	char			*path;
 	struct stat		stat;
 	struct s_elem	*next;
 }				t_elem;
@@ -68,7 +69,7 @@ t_elem			*ls_lstaddtime(t_elem **alst, t_elem *new);
 void			ls_lstdel(t_elem **elem);
 void			ls_lstiter(t_elem *lst, void(*f)(t_elem*));
 void			ls_lstiter_reverse(t_elem *list, void (*f)(t_elem*));
-t_elem			*ls_lstnew(char *name, struct stat stat);
+t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
 void			print_name(t_elem *elem);
 void			print_path(t_elem *path);
 
@@ -84,6 +85,7 @@ void			ls_direc(t_elem **direc, t_ls *ls);
 */
 
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
+t_elem			*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s);
 void			ls_files(t_elem **files, t_ls *ls);
 void			print_reverse_long(t_elem *elem);
 void			print_standard_long(t_elem *elem);
@@ -103,4 +105,7 @@ void			print_nonex(t_list *list, t_ls *ls);
 
 void			print_directory(t_elem *list, t_ls *ls);
 
+
+
+char *just_name(char *name);
 #endif

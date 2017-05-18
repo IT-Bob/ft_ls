@@ -6,13 +6,13 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 12:42:54 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 17:04:44 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static char *just_name(char *name)
+char *just_name(char *name)
 {
 	int	i;
 	int	find;

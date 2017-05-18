@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 13:05:30 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/18 16:59:17 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "ft_printf.h"
 #include <unistd.h>
 #include <time.h>
+#include <limits.h>
 
 static void permissions(mode_t st_mode)
 {
@@ -105,9 +106,9 @@ static void	print_all(t_elem *elem)
 		ft_putstrs(elem->name);
 		if (S_ISLNK(elem->stat.st_mode))
 		{
-			size = elem->stat.st_size;
+			size = PATH_MAX;
 			link = ft_strnew(size);
-			if ((readlink(elem->name, link, size) > 0))
+			if ((readlink(elem->path, link, size - 1) >= 0))
 				ft_printf("-> %s\n", link);
 			ft_strdel(&link);
 		}
