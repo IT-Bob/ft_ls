@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 17:06:36 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:08:12 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** ls_lstnew() alloue la mémoire et initialise la structure pour la liste de ls.
 */
 
-t_elem	*ls_lstnew(char *name, char *path, struct stat stat)
+t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 {
 	t_elem	*element;
 
@@ -27,7 +27,14 @@ t_elem	*ls_lstnew(char *name, char *path, struct stat stat)
 			element->name = ft_strcpy(element->name, name);
 		if ((element->path = (path ? ft_strnew(ft_strlen(path)) : NULL)))
 			element->path = ft_strcpy(element->path, path);
+		if (ls)
+			;
+		element->user = NULL;
+		element->grp = NULL;
+		element->size = 0;
+		element->link = 0;
 		element->stat = stat;
+		element->date = NULL;
 		element->next = NULL;
 	}
 	return (element);

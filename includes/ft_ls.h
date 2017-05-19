@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 17:03:00 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:12:02 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ typedef struct	s_elem
 	char			*name;
 	char			*path;
 	struct stat		stat;
+	int				link;
+	char			*user;
+	char			*grp;
+	int				*size;
+	char			*date;
 	struct s_elem	*next;
 }				t_elem;
 
@@ -69,7 +74,7 @@ t_elem			*ls_lstaddtime(t_elem **alst, t_elem *new);
 void			ls_lstdel(t_elem **elem);
 void			ls_lstiter(t_elem *lst, void(*f)(t_elem*));
 void			ls_lstiter_reverse(t_elem *list, void (*f)(t_elem*));
-t_elem			*ls_lstnew(char *name, char *path, struct stat stat);
+t_elem			*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls);
 void			print_name(t_elem *elem);
 void			print_path(t_elem *path);
 
