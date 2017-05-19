@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 13:21:31 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 17:10:12 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 			}
 			if (time(NULL) - stat.st_mtime > 2628000 * 6)
 			{
-				ft_putstrs((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 6)));
-				ft_putstrs((date2 = ft_strsub(ctime(&elem->stat.st_mtime), 20, 4)));
+				date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 6);
+				date2 = ft_strsub(ctime(&elem->stat.st_mtime), 20, 4);
 				elem->date = ft_strjoin(date, date2);
 			}
 			else
