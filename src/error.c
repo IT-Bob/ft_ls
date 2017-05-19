@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 17:04:44 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 16:43:34 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		put_error(t_elem *elem, t_ls *ls)
 {
 	char	*name;
 
-	name = just_name(elem->path);
+	name = just_name(elem->name);
 	ft_putstr_fd(NAME, 2);
 	ft_putstr_fd(":", 2);
 	if (name[0])
