@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 16:59:17 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 13:19:44 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,35 +74,17 @@ static void permissions(mode_t st_mode)
 
 static void	print_all(t_elem *elem)
 {
-	struct passwd	*pwd;
-	struct group	*grp;
 	char	*link;
 	int		size;
-	char	*date;
 
-	pwd = NULL;
 	if (elem)
 	{
 		permissions(elem->stat.st_mode);
-		pwd = getpwuid(elem->stat.st_uid);
-		ft_putnbrs(elem->stat.st_nlink);
-		grp = getgrgid(elem->stat.st_gid);
-		ft_putstrs(pwd->pw_name);
-		ft_putstrs(grp->gr_name);
-		ft_putnbrs(elem->stat.st_size);
-		if (time(NULL) - elem->stat.st_mtime > 2628000 * 6)
-		{
-			ft_putstrs((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 6)));
-			ft_strdel(&date);
-			ft_putstrs((date = ft_strsub(ctime(&elem->stat.st_mtime), 20, 4)));
-			ft_strdel(&date);
-		}
-		else
-			if ((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
-			{
-				ft_putstrs(date);
-				ft_strdel(&date);
-			}
+		ft_putnbrs(elem->link);
+		ft_putstrs(elem->user);
+		ft_putstrs(elem->grp);
+		ft_putnbrs(elem->size);
+		ft_putstrs(elem->date);
 		ft_putstrs(elem->name);
 		if (S_ISLNK(elem->stat.st_mode))
 		{

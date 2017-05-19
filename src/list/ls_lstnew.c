@@ -6,36 +6,73 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 11:08:12 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 13:21:31 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include <stdlib.h>
+#include <pwd.h>
+#include <grp.h>
+#include <uuid/uuid.h>
 
 /*
 ** ls_lstnew() alloue la mémoire et initialise la structure pour la liste de ls.
 */
 
+
+// À PROTEGER
 t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 {
-	t_elem	*element;
+	t_elem	*elem;
+	struct passwd	*pwd;
+	struct group	*grp;
+	char			*date;
+	char			*date2;
 
-	if ((element = (t_elem*)ft_memalloc(sizeof(t_elem))))
+	if ((elem = (t_elem*)ft_memalloc(sizeof(t_elem))))
 	{
-		if ((element->name = (name ? ft_strnew(ft_strlen(name)) : NULL)))
-			element->name = ft_strcpy(element->name, name);
-		if ((element->path = (path ? ft_strnew(ft_strlen(path)) : NULL)))
-			element->path = ft_strcpy(element->path, path);
-		if (ls)
-			;
-		element->user = NULL;
-		element->grp = NULL;
-		element->size = 0;
-		element->link = 0;
-		element->stat = stat;
-		element->date = NULL;
-		element->next = NULL;
+		if ((elem->name = (name ? ft_strnew(ft_strlen(name)) : NULL)))
+			elem->name = ft_strcpy(elem->name, name);
+		if ((elem->path = (path ? ft_strnew(ft_strlen(path)) : NULL)))
+			elem->path = ft_strcpy(elem->path, path);
+		elem->stat = stat;
+		elem->link = 0;
+		elem->size = 0;
+		elem->user = NULL;
+		elem->grp = NULL;
+		elem->date = NULL;
+		if (ls->flags[2])
+		{
+			date = NULL;
+			date2 = NULL;
+			elem->link = stat.st_nlink;
+			elem->size = stat.st_size;
+			if (!(pwd = getpwuid(stat.st_uid)))
+				perror(NAME);
+			else
+			{
+				elem->user = ft_strnew(ft_strlen(pwd->pw_name));
+				elem->user = ft_strcpy(elem->user, pwd->pw_name);
+			}
+			if (!(grp = getgrgid(stat.st_gid)))
+				perror(NAME);
+			else
+			{
+				elem->grp = ft_strnew(ft_strlen(grp->gr_name));
+				elem->grp = ft_strcpy(elem->grp, grp->gr_name);
+			}
+			if (time(NULL) - stat.st_mtime > 2628000 * 6)
+			{
+				ft_putstrs((date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 6)));
+				ft_putstrs((date2 = ft_strsub(ctime(&elem->stat.st_mtime), 20, 4)));
+				elem->date = ft_strjoin(date, date2);
+			}
+			else
+				if (!(elem->date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
+				perror(NAME);
+		}
+		elem->next = NULL;
 	}
-	return (element);
+	return (elem);
 }

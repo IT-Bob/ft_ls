@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 11:12:02 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:46:50 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_elem
 	int				link;
 	char			*user;
 	char			*grp;
-	int				*size;
+	long			size;
 	char			*date;
 	struct s_elem	*next;
 }				t_elem;
