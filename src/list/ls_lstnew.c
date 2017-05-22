@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 17:10:12 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:15:17 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <uuid/uuid.h>
+#include <sys/types.h>
 
 /*
 ** ls_lstnew() alloue la mémoire et initialise la structure pour la liste de ls.
@@ -22,6 +23,7 @@
 
 
 // À PROTEGER
+
 t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 {
 	t_elem	*elem;
@@ -64,13 +66,22 @@ t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 			}
 			if (time(NULL) - stat.st_mtime > 2628000 * 6)
 			{
-				date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 6);
-				date2 = ft_strsub(ctime(&elem->stat.st_mtime), 20, 4);
+				date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 7);
+				date2 = ft_strsub(ctime(&elem->stat.st_mtime), 19, 5);
 				elem->date = ft_strjoin(date, date2);
 			}
 			else
 				if (!(elem->date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
 				perror(NAME);
+			elem->major = major(stat.st_rdev);
+			elem->minor = minor(stat.st_rdev);
+		}
+		else
+		{
+			elem->user_len = 0;
+			elem->grp_len = 0;
+			elem->size_len = 0;
+			elem->link_len = 0;
 		}
 		elem->next = NULL;
 	}

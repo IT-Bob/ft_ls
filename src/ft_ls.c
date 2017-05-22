@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 15:55:41 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:07:14 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,25 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 	ls_direc(&direc, ls);
 }
 
+void		initialise_size(t_ls *ls)
+{
+	ls->link_mlen = 0;
+	ls->user_mlen = 0;
+	ls->grp_mlen = 0;
+	ls->size_mlen = 0;
+	ls->majo_mlen = 0;
+	ls->mino_mlen = 0;
+	ls->total = -1;
+}
+
 static void	initialise(t_ls *ls)
 {
+	fill_tab(ls->flags, NB_FLAG, 0);
 	ls->error = 0;
 	ls->nb_direc = 0;
 	ls->nb_files = 0;
 	ls->nb_nonex = 0;
-	fill_tab(ls->flags, NB_FLAG, 0);
+	initialise_size(ls);
 }
 
 int			main(int argc, char **argv)

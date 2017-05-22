@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 12:43:54 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:15:10 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <unistd.h>
 #include <time.h>
 #include <limits.h>
-#include <sys/types.h>
 
 static void permissions(mode_t st_mode)
 {
@@ -73,7 +72,7 @@ static void permissions(mode_t st_mode)
 	ft_putstr("  ");
 }
 
-static void	print_all(t_elem *elem)
+static void	print_all(t_elem *elem, t_ls *ls)
 {
 	char	*link;
 	int		size;
@@ -81,21 +80,32 @@ static void	print_all(t_elem *elem)
 	if (elem)
 	{
 		permissions(elem->stat.st_mode);
+		ft_putxchar(' ', ls->link_mlen - elem->link_len);
 		ft_putnbrs(elem->link);
+		ft_putxchar(' ', ls->user_mlen - elem->user_len);
 		ft_putstrs(elem->user);
+		ft_putchar(' ');
 		ft_putstrs(elem->grp);
+		ft_putxchar(' ', ls->grp_mlen - elem->grp_len);
+		ft_putchar(' ');
 		if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
 		{
-			ft_putnbr(major(elem->stat.st_rdev));
+			ft_putxchar(' ', ls->majo_mlen - elem->majo_len);
+			ft_putnbr(elem->major);
 			ft_putstrs(",");
-			ft_putnbrs(minor(elem->stat.st_rdev));
+			ft_putxchar(' ', ls->mino_mlen - elem->mino_len);
+			ft_putnbrs(elem->minor);
 		}
 		else
+		{
+			ft_putxchar(' ', ls->size_mlen - elem->size_len);
 			ft_putnbrs(elem->size);
+		}
 		ft_putstrs(elem->date);
-		ft_putstrs(elem->name);
+		ft_putstr(elem->name);
 		if (S_ISLNK(elem->stat.st_mode))
 		{
+			ft_putchar(' ');
 			size = PATH_MAX;
 			link = ft_strnew(size);
 			if ((readlink(elem->path, link, size - 1) >= 0))
@@ -109,20 +119,20 @@ static void	print_all(t_elem *elem)
 	}
 }
 
-void	print_standard_long(t_elem *elem)
+void	print_standard_long(t_elem *elem, t_ls *ls)
 {
 	while (elem)
 	{
-		print_all(elem);
+		print_all(elem, ls);
 		elem = elem->next;
 	}
 }
 
-void	print_reverse_long(t_elem *elem)
+void	print_reverse_long(t_elem *elem, t_ls *ls)
 {
 	if (elem)
 	{
-		print_reverse_long(elem->next);
-		print_all(elem);
+		print_reverse_long(elem->next, ls);
+		print_all(elem, ls);
 	}
 }

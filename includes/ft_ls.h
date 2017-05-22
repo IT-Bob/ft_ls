@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 13:35:05 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:12:42 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct	s_ls
 	int	nb_direc;
 	int	nb_files;
 	int	nb_nonex;
+	int	link_mlen;
+	int	user_mlen;
+	int	grp_mlen;
+	int	size_mlen;
+	int	majo_mlen;
+	int	mino_mlen;
+	int	total;
 }				t_ls;
 
 typedef struct	s_elem
@@ -49,6 +56,14 @@ typedef struct	s_elem
 	char			*grp;
 	long			size;
 	char			*date;
+	int				major;
+	int				minor;
+	int				link_len;
+	int				user_len;
+	int				grp_len;
+	int				size_len;
+	int				majo_len;
+	int				mino_len;
 	struct s_elem	*next;
 }				t_elem;
 
@@ -57,8 +72,9 @@ typedef struct	s_elem
 */
 
 void			put_error(t_elem *elem, t_ls *ls);
+void			initialise_size(t_ls *ls);
 
-/*
+	/*
 ** src/flags
 */
 
@@ -92,8 +108,8 @@ void			ls_direc(t_elem **direc, t_ls *ls);
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
 t_elem			*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s);
 void			ls_files(t_elem **files, t_ls *ls);
-void			print_reverse_long(t_elem *elem);
-void			print_standard_long(t_elem *elem);
+void			print_reverse_long(t_elem *elem, t_ls *ls);
+void			print_standard_long(t_elem *elem, t_ls *ls);
 
 	/*
 ** src/nonex
