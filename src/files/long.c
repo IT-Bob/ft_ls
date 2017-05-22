@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 13:19:44 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:43:54 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <unistd.h>
 #include <time.h>
 #include <limits.h>
+#include <sys/types.h>
 
 static void permissions(mode_t st_mode)
 {
@@ -83,7 +84,14 @@ static void	print_all(t_elem *elem)
 		ft_putnbrs(elem->link);
 		ft_putstrs(elem->user);
 		ft_putstrs(elem->grp);
-		ft_putnbrs(elem->size);
+		if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
+		{
+			ft_putnbr(major(elem->stat.st_rdev));
+			ft_putstrs(",");
+			ft_putnbrs(minor(elem->stat.st_rdev));
+		}
+		else
+			ft_putnbrs(elem->size);
 		ft_putstrs(elem->date);
 		ft_putstrs(elem->name);
 		if (S_ISLNK(elem->stat.st_mode))
