@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 20:15:17 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 21:00:34 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 			elem->grp_len = 0;
 			elem->size_len = 0;
 			elem->link_len = 0;
+			elem->major = 0;
+			elem->minor = 0;
 		}
 		elem->next = NULL;
 	}

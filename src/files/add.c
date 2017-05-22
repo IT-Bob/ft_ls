@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 20:24:40 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 21:02:36 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	fill_size(t_elem *elem, t_ls *ls, int blocks)
 		elem->mino_len = ft_nbrlen(elem->minor);
 		if (elem->mino_len > ls->mino_mlen)
 			ls->mino_mlen = elem->mino_len;
+		if (ls->majo_mlen + ls->mino_mlen > ls->size_mlen)
+			ls->size_mlen = ls->majo_mlen + ls->mino_mlen + 2;
 		ls->total += blocks;
 	}
 }

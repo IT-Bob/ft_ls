@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 20:15:10 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 21:12:51 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ static void	print_all(t_elem *elem, t_ls *ls)
 		permissions(elem->stat.st_mode);
 		ft_putxchar(' ', ls->link_mlen - elem->link_len);
 		ft_putnbrs(elem->link);
-		ft_putxchar(' ', ls->user_mlen - elem->user_len);
 		ft_putstrs(elem->user);
+		ft_putxchar(' ', ls->user_mlen - elem->user_len);
 		ft_putchar(' ');
 		ft_putstrs(elem->grp);
 		ft_putxchar(' ', ls->grp_mlen - elem->grp_len);
 		ft_putchar(' ');
 		if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
 		{
-			ft_putxchar(' ', ls->majo_mlen - elem->majo_len);
+			ft_putxchar(' ', ls->majo_mlen - elem->majo_len + 1);
 			ft_putnbr(elem->major);
 			ft_putstrs(",");
 			ft_putxchar(' ', ls->mino_mlen - elem->mino_len);
