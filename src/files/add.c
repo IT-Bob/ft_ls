@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 20:13:13 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 20:24:40 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_elem	*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s)
 	t_elem	*elem;
 
 	elem = ls_lstnew(just_name(path), path, s, ls);
+	fill_size(elem, ls, s.st_blocks);
 	if (ls && ls->flags[4])
 		f = ls_lstaddtime(&f, elem);
 	else
