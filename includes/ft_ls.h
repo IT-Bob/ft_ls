@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 11:46:50 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 13:35:05 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/stat.h>
 
 # define NAME		"ft_ls"
-# define FLAGS_NAME	"Ralrt1"
+# define FLAGS_LIST	"Ralrt1"
 # define FLAGS		"Ralrt1"
 # define NB_FLAG	6
 

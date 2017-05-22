@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 17:11:28 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/05 17:41:24 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 13:36:47 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@
 
 void	illegal_option(char c)
 {
-	ft_printf("%s: illegal option -- %c\nusage: ls [-%s] [file ...]\n",
-				NAME, c, FLAGS_NAME);
+	ft_putstr_fd("ft_ls: illegal option -- ", 2);
+	ft_putchar_fd(c, 2);
+	ft_putstr_fd("\nusage: ", 2);
+	ft_putstr_fd(NAME, 2);
+	ft_putstr_fd(" [-", 2);
+	ft_putstr_fd(FLAGS_LIST, 2);
+	ft_putstr_fd("] [file ...]\n", 2);
 	exit(-1);
 }

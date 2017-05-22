@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/19 16:43:34 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/22 13:35:32 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		put_error(t_elem *elem, t_ls *ls)
 
 	name = just_name(elem->name);
 	ft_putstr_fd(NAME, 2);
-	ft_putstr_fd(":", 2);
+	ft_putstr_fd(" :", 2);
 	if (name[0])
 		ft_putstr_fd(" ", 2);
 	perror(name[0] ? name : " ");
