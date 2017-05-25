@@ -21,6 +21,26 @@
 #include <time.h>
 #include <limits.h>
 
+static void print_type(mode_t st_mode)
+{
+	if (S_ISFIFO(st_mode))
+		ft_putchar('p');
+	else if (S_ISCHR(st_mode))
+		ft_putchar('c');
+	else if (S_ISDIR(st_mode))
+		ft_putchar('d');
+	else if (S_ISDIR(st_mode))
+		ft_putchar('d');
+	else if (S_ISBLK(st_mode))
+		ft_putchar('b');
+	else if (S_ISLNK(st_mode))
+		ft_putchar('l');
+	else if (S_ISSOCK(st_mode))
+		ft_putchar('s');
+	else
+		ft_putchar('-');
+}
+
 static void print_permissions(mode_t st_mode)
 {
 	ft_putchar(((st_mode & S_IRUSR) ? 'r' : '-'));
@@ -47,28 +67,32 @@ static void print_permissions(mode_t st_mode)
 		ft_putchar('t');
 	else
 		ft_putchar(((st_mode & S_IXOTH) ? 'x' : '-'));
+	ft_putstr("  ");
 }
 
-static void print_type(mode_t st_mode)
+static void	print_other(t_elem *elem, t_ls *ls)
 {
-	if (S_ISFIFO(st_mode))
-		ft_putchar('p');
-	else if (S_ISCHR(st_mode))
-		ft_putchar('c');
-	else if (S_ISDIR(st_mode))
-		ft_putchar('d');
-	else if (S_ISDIR(st_mode))
-		ft_putchar('d');
-	else if (S_ISBLK(st_mode))
-		ft_putchar('b');
-	else if (S_ISLNK(st_mode))
-		ft_putchar('l');
-	else if (S_ISSOCK(st_mode))
-		ft_putchar('s');
+	ft_putxchar(' ', ls->link_mlen - elem->link_len);
+	ft_putnbrs(elem->link);
+	ft_putstrs(elem->user);
+	ft_putxchar(' ', ls->user_mlen - elem->user_len + 1);
+	ft_putstrs(elem->grp);
+	ft_putxchar(' ', ls->grp_mlen - elem->grp_len + 1);
+	if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
+	{
+		ft_putxchar(' ', ls->majo_mlen - elem->majo_len + 1);
+		ft_putnbr(elem->major);
+		ft_putstrs(",");
+		ft_putxchar(' ', ls->mino_mlen - elem->mino_len);
+		ft_putnbrs(elem->minor);
+	}
 	else
-		ft_putchar('-');
-	print_permissions(st_mode);
-	ft_putstr("  ");
+	{
+		ft_putxchar(' ', ls->size_mlen - elem->size_len);
+		ft_putnbrs(elem->size);
+	}
+	ft_putstrs(elem->date);
+	ft_putstr(elem->name);
 }
 
 static void	print_link(t_elem *elem)
@@ -96,26 +120,7 @@ void	print_all(t_elem *elem, t_ls *ls)
 	if (!elem || !ls)
 		exit(-1);
 	print_type(elem->stat.st_mode);
-	ft_putxchar(' ', ls->link_mlen - elem->link_len);
-	ft_putnbrs(elem->link);
-	ft_putstrs(elem->user);
-	ft_putxchar(' ', ls->user_mlen - elem->user_len + 1);
-	ft_putstrs(elem->grp);
-	ft_putxchar(' ', ls->grp_mlen - elem->grp_len + 1);
-	if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
-	{
-		ft_putxchar(' ', ls->majo_mlen - elem->majo_len + 1);
-		ft_putnbr(elem->major);
-		ft_putstrs(",");
-		ft_putxchar(' ', ls->mino_mlen - elem->mino_len);
-		ft_putnbrs(elem->minor);
-	}
-	else
-	{
-		ft_putxchar(' ', ls->size_mlen - elem->size_len);
-		ft_putnbrs(elem->size);
-	}
-	ft_putstrs(elem->date);
-	ft_putstr(elem->name);
+	print_permissions(elem->stat.st_mode);
+	print_other(elem, ls);
 	print_link(elem);
 }
