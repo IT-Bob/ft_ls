@@ -6,11 +6,12 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 20:07:14 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 15:47:30 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+#include <stdlib.h>
 
 static void	find_elem(char **argv, int size, t_ls *ls)
 {
@@ -40,13 +41,16 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 			else
 				files = add_files_path(files, argv[i], ls, s);
 	}
-	ls_nonex(&nonex, ls);
+	ls->total = -1;
+	ls_nonex(&nonex);
 	ls_files(&files, ls);
 	ls_direc(&direc, ls);
 }
 
 void		initialise_size(t_ls *ls)
 {
+	if (!ls)
+		exit(-1);
 	ls->link_mlen = 0;
 	ls->user_mlen = 0;
 	ls->grp_mlen = 0;
@@ -58,6 +62,8 @@ void		initialise_size(t_ls *ls)
 
 static void	initialise(t_ls *ls)
 {
+	if (!ls)
+		exit(-1);
 	fill_tab(ls->flags, NB_FLAG, 0);
 	ls->error = 0;
 	ls->nb_direc = 0;
