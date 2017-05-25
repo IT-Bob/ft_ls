@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 21:02:36 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 10:51:43 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_elem	*add_files(t_elem *files, char *name, t_ls *ls, struct stat s)
 	elem = ls_lstnew(name, NULL, s, ls);
 	if (ls && ls->total == -1)
 		ls->total = 0;
-	fill_size(elem, ls, s.st_blocks);
+	if (ls->flags[2])
+		fill_size(elem, ls, s.st_blocks);
 	if (ls && ls->flags[4])
 		files = ls_lstaddtime(&files, elem);
 	else
@@ -62,7 +63,8 @@ t_elem	*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s)
 	t_elem	*elem;
 
 	elem = ls_lstnew(just_name(path), path, s, ls);
-	fill_size(elem, ls, s.st_blocks);
+	if (ls->flags[2])
+		fill_size(elem, ls, s.st_blocks);
 	if (ls && ls->flags[4])
 		f = ls_lstaddtime(&f, elem);
 	else
