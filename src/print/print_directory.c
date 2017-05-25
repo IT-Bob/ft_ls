@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 19:57:41 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 14:27:17 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 #include "ft_printf.h"
 #include <sys/stat.h>
 #include <dirent.h>
+
+static int		add(const char *name, t_ls *ls)
+{
+	if (name && ls)
+	{	
+		if ((!ls->flags[1] && name[0] == '.') ||
+			(!ft_strcmp(name, ".") || !ft_strcmp(name, "..")))
+			return (0);
+		return (1);
+	}
+	return (0);
+}
 
 static char		*concat(const char *path, const char *name)
 {
@@ -56,7 +68,7 @@ static t_elem	*read_dir(DIR *fold, char *name, t_ls *ls)
 			else
 				elem = add_files_path(elem, str, ls, s);
 		}
-		if (d->d_name[0] != '.' && ls && ls->flags[0] && S_ISDIR(s.st_mode))
+		if (add(d->d_name, ls) && S_ISDIR(s.st_mode))
 			direc = add_direc(direc, str, ls, s);
 		ft_strdel(&str);
 	}
