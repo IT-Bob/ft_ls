@@ -93,32 +93,31 @@ static void	print_link(t_elem *elem)
 
 static void	print_all(t_elem *elem, t_ls *ls)
 {
-	if (elem)
+	if (!elem || !ls)
+		exit(-1);
+	print_type(elem->stat.st_mode);
+	ft_putxchar(' ', ls->link_mlen - elem->link_len);
+	ft_putnbrs(elem->link);
+	ft_putstrs(elem->user);
+	ft_putxchar(' ', ls->user_mlen - elem->user_len + 1);
+	ft_putstrs(elem->grp);
+	ft_putxchar(' ', ls->grp_mlen - elem->grp_len + 1);
+	if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
 	{
-		print_type(elem->stat.st_mode);
-		ft_putxchar(' ', ls->link_mlen - elem->link_len);
-		ft_putnbrs(elem->link);
-		ft_putstrs(elem->user);
-		ft_putxchar(' ', ls->user_mlen - elem->user_len + 1);
-		ft_putstrs(elem->grp);
-		ft_putxchar(' ', ls->grp_mlen - elem->grp_len + 1);
-		if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
-		{
-			ft_putxchar(' ', ls->majo_mlen - elem->majo_len + 1);
-			ft_putnbr(elem->major);
-			ft_putstrs(",");
-			ft_putxchar(' ', ls->mino_mlen - elem->mino_len);
-			ft_putnbrs(elem->minor);
-		}
-		else
-		{
-			ft_putxchar(' ', ls->size_mlen - elem->size_len);
-			ft_putnbrs(elem->size);
-		}
-		ft_putstrs(elem->date);
-		ft_putstr(elem->name);
-		print_link(elem);
+		ft_putxchar(' ', ls->majo_mlen - elem->majo_len + 1);
+		ft_putnbr(elem->major);
+		ft_putstrs(",");
+		ft_putxchar(' ', ls->mino_mlen - elem->mino_len);
+		ft_putnbrs(elem->minor);
 	}
+	else
+	{
+		ft_putxchar(' ', ls->size_mlen - elem->size_len);
+		ft_putnbrs(elem->size);
+	}
+	ft_putstrs(elem->date);
+	ft_putstr(elem->name);
+	print_link(elem);
 }
 
 void	print_standard_long(t_elem *elem, t_ls *ls)
