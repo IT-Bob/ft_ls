@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 21:12:51 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 18:43:27 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,52 +23,51 @@
 
 static void permissions(mode_t st_mode)
 {
-	int	perm[10];
-	int i;
-
-	i = 0;
-	if (S_ISFIFO(st_mode))
-		perm[0] = 'p';
-	else if (S_ISCHR(st_mode))
-		perm[0] = 'c';
-	else if (S_ISDIR(st_mode))
-		perm[0] = 'd';
-	else if (S_ISDIR(st_mode))
-		perm[0] = 'd';
-	else if (S_ISBLK(st_mode))
-		perm[0] = 'b';
-	else if (S_ISLNK(st_mode))
-		perm[0] = 'l';
-	else if (S_ISSOCK(st_mode))
-		perm[0] = 's';
-	else
-		perm[0] = '-';
-	perm[1] = (st_mode & S_IRUSR) ? 'r' : '-';
-	perm[2] = (st_mode & S_IWUSR) ? 'w' : '-';
+	ft_putchar(((st_mode & S_IRUSR) ? 'r' : '-'));
+	ft_putchar(((st_mode & S_IWUSR) ? 'w' : '-'));
 	if (!(st_mode & S_IXUSR) && (st_mode & S_ISUID))
-		perm[3] = 'S';
+		ft_putchar('S');
 	else if ((st_mode & S_IXUSR) && (st_mode & S_ISUID))
-		perm[3] = 's';
+		ft_putchar('s');
 	else
-		perm[3] = (st_mode & S_IXUSR) ? 'x' : '-';
-	perm[4] = (st_mode & S_IRGRP) ? 'r' : '-';
-	perm[5] = (st_mode & S_IWGRP) ? 'w' : '-';
+		ft_putchar(((st_mode & S_IXUSR) ? 'x' : '-'));
+	ft_putchar(((st_mode & S_IRGRP) ? 'r' : '-'));
+	ft_putchar(((st_mode & S_IWGRP) ? 'w' : '-'));
 	if (!(st_mode & S_IXGRP) && (st_mode & S_ISGID))
-		perm[6] = 'S';
+		ft_putchar('S');
 	else if ((st_mode & S_IXGRP) && (st_mode & S_ISGID))
-		perm[6] = 's';
+		ft_putchar('s');
 	else
-		perm[6] = (st_mode & S_IXGRP) ? 'x' : '-';
-	perm[7] = (st_mode & S_IROTH) ? 'r' : '-';
-	perm[8] = (st_mode & S_IWOTH) ? 'w' : '-';
+		ft_putchar(((st_mode & S_IXGRP) ? 'x' : '-'));
+	ft_putchar(((st_mode & S_IROTH) ? 'r' : '-'));
+	ft_putchar(((st_mode & S_IWOTH) ? 'w' : '-'));
 	if (!(st_mode & S_IXOTH) && (st_mode & S_ISVTX))
-		perm[9] = 'T';
+		ft_putchar('T');
 	else if ((st_mode & S_IXOTH) && (st_mode & S_ISVTX))
-		perm[9] = 't';
+		ft_putchar('t');
 	else
-		perm[9] = (st_mode & S_IXOTH) ? 'x' : '-';
-	while (i < 10)
-		ft_putchar(perm[i++]);
+		ft_putchar(((st_mode & S_IXOTH) ? 'x' : '-'));
+}
+
+static void type(mode_t st_mode)
+{
+	if (S_ISFIFO(st_mode))
+		ft_putchar('p');
+	else if (S_ISCHR(st_mode))
+		ft_putchar('c');
+	else if (S_ISDIR(st_mode))
+		ft_putchar('d');
+	else if (S_ISDIR(st_mode))
+		ft_putchar('d');
+	else if (S_ISBLK(st_mode))
+		ft_putchar('b');
+	else if (S_ISLNK(st_mode))
+		ft_putchar('l');
+	else if (S_ISSOCK(st_mode))
+		ft_putchar('s');
+	else
+		ft_putchar('-');
+	permissions(st_mode);
 	ft_putstr("  ");
 }
 
@@ -79,7 +78,7 @@ static void	print_all(t_elem *elem, t_ls *ls)
 
 	if (elem)
 	{
-		permissions(elem->stat.st_mode);
+		type(elem->stat.st_mode);
 		ft_putxchar(' ', ls->link_mlen - elem->link_len);
 		ft_putnbrs(elem->link);
 		ft_putstrs(elem->user);
