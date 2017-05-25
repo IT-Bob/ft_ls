@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 14:27:17 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 16:09:15 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_elem	*read_dir(DIR *fold, char *name, t_ls *ls)
 			else
 				elem = add_files_path(elem, str, ls, s);
 		}
-		if (add(d->d_name, ls) && S_ISDIR(s.st_mode))
+		if (ls->flags[0] && add(d->d_name, ls) && S_ISDIR(s.st_mode))
 			direc = add_direc(direc, str, ls, s);
 		ft_strdel(&str);
 	}
