@@ -13,6 +13,24 @@
 #include "ft_ls.h"
 #include "ft_printf.h"
 
+static void	print_standard_long(t_elem *elem, t_ls *ls)
+{
+	while (elem)
+	{
+		print_all(elem, ls);
+		elem = elem->next;
+	}
+}
+
+static void	print_reverse_long(t_elem *elem, t_ls *ls)
+{
+	if (elem)
+	{
+		print_reverse_long(elem->next, ls);
+		print_all(elem, ls);
+	}
+}
+
 void	ls_files(t_elem **files, t_ls *ls)
 {
 	if (*files)

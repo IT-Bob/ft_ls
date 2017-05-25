@@ -74,7 +74,7 @@ typedef struct	s_elem
 void			put_error(t_elem *elem, t_ls *ls);
 void			initialise_size(t_ls *ls);
 
-	/*
+/*
 ** src/flags
 */
 
@@ -108,10 +108,9 @@ void			ls_direc(t_elem **direc, t_ls *ls);
 t_elem			*add_files(t_elem *files, char *name, t_ls *ls, struct stat s);
 t_elem			*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s);
 void			ls_files(t_elem **files, t_ls *ls);
-void			print_reverse_long(t_elem *elem, t_ls *ls);
-void			print_standard_long(t_elem *elem, t_ls *ls);
+void			print_all(t_elem *elem, t_ls *ls);
 
-	/*
+/*
 ** src/nonex
 */
 

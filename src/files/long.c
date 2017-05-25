@@ -91,7 +91,7 @@ static void	print_link(t_elem *elem)
 		ft_putchar('\n');
 }
 
-static void	print_all(t_elem *elem, t_ls *ls)
+void	print_all(t_elem *elem, t_ls *ls)
 {
 	if (!elem || !ls)
 		exit(-1);
@@ -118,22 +118,4 @@ static void	print_all(t_elem *elem, t_ls *ls)
 	ft_putstrs(elem->date);
 	ft_putstr(elem->name);
 	print_link(elem);
-}
-
-void	print_standard_long(t_elem *elem, t_ls *ls)
-{
-	while (elem)
-	{
-		print_all(elem, ls);
-		elem = elem->next;
-	}
-}
-
-void	print_reverse_long(t_elem *elem, t_ls *ls)
-{
-	if (elem)
-	{
-		print_reverse_long(elem->next, ls);
-		print_all(elem, ls);
-	}
 }
