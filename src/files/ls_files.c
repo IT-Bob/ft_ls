@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:30 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 13:17:27 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 20:47:33 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	print_reverse_long(t_elem *elem, t_ls *ls)
 	}
 }
 
-void	ls_files(t_elem **files, t_ls *ls)
+void		ls_files(t_elem **files, t_ls *ls)
 {
 	if (*files)
-	{	
+	{
 		if (ls && ls->flags[2] && ls->total > -1)
 			ft_printf("total %d\n", ls->total);
 		if (ls && ls->flags[3])

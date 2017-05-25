@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:54:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 15:10:10 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 20:49:26 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_nonex(t_list *list)
 	}
 }
 
-void	ls_nonex(t_list **nonex)
+void		ls_nonex(t_list **nonex)
 {
 	if (*nonex)
 	{

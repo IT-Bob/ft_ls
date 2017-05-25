@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 16:09:15 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 20:53:32 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static int		add(const char *name, t_ls *ls)
 {
 	if (name && ls)
-	{	
+	{
 		if ((!ls->flags[1] && name[0] == '.') ||
 			(!ft_strcmp(name, ".") || !ft_strcmp(name, "..")))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 13:17:23 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 20:44:44 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	fill_size(t_elem *elem, t_ls *ls, int blocks)
 	}
 }
 
-t_elem	*add_files(t_elem *files, char *name, t_ls *ls, struct stat s)
+t_elem		*add_files(t_elem *files, char *name, t_ls *ls, struct stat s)
 {
 	t_elem	*elem;
 
@@ -58,7 +58,7 @@ t_elem	*add_files(t_elem *files, char *name, t_ls *ls, struct stat s)
 	return (files);
 }
 
-t_elem	*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s)
+t_elem		*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s)
 {
 	t_elem	*elem;
 

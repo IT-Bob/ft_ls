@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguerin <aguerin@student.42.fr>           +#+  +:+       +#          */
+/*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 16:48:03 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 16:47:04 by aguerin          ###   ########.fr       */
+/*   Created: 2017/05/25 20:41:46 by aguerin           #+#    #+#             */
+/*   Updated: 2017/05/25 20:44:02 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char *just_name(char *path)
+char	*just_name(char *path)
 {
 	int	i;
 	int	find;
@@ -25,7 +25,7 @@ char *just_name(char *path)
 	return (&path[find]);
 }
 
-void		put_error(t_elem *elem, t_ls *ls)
+void	put_error(t_elem *elem, t_ls *ls)
 {
 	char	*name;
 

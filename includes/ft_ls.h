@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/22 20:12:42 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 20:53:03 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,7 @@ void			print_all(t_elem *elem, t_ls *ls);
 */
 
 t_list			*add_nonex(t_list *nonex, char *path, t_ls *ls);
-void			del(void *content, size_t size);
-void			ls_nonex(t_list **nonex, t_ls *ls);
-void			print_nonex(t_list *list, t_ls *ls);
+void			ls_nonex(t_list **nonex);
 
 /*
 ** src/print
@@ -125,7 +123,6 @@ void			print_nonex(t_list *list, t_ls *ls);
 
 void			print_directory(t_elem *list, t_ls *ls);
 
+char			*just_name(char *name);
 
-
-char *just_name(char *name);
 #endif

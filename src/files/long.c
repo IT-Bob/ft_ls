@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 18:43:27 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/25 20:45:29 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <time.h>
 #include <limits.h>
 
-static void print_type(mode_t st_mode)
+static void	print_type(mode_t st_mode)
 {
 	if (S_ISFIFO(st_mode))
 		ft_putchar('p');
@@ -41,7 +41,7 @@ static void print_type(mode_t st_mode)
 		ft_putchar('-');
 }
 
-static void print_permissions(mode_t st_mode)
+static void	print_permissions(mode_t st_mode)
 {
 	ft_putchar(((st_mode & S_IRUSR) ? 'r' : '-'));
 	ft_putchar(((st_mode & S_IWUSR) ? 'w' : '-'));
@@ -115,7 +115,7 @@ static void	print_link(t_elem *elem)
 		ft_putchar('\n');
 }
 
-void	print_all(t_elem *elem, t_ls *ls)
+void		print_all(t_elem *elem, t_ls *ls)
 {
 	if (!elem || !ls)
 		exit(-1);
