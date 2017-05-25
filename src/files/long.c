@@ -21,7 +21,7 @@
 #include <time.h>
 #include <limits.h>
 
-static void permissions(mode_t st_mode)
+static void print_permissions(mode_t st_mode)
 {
 	ft_putchar(((st_mode & S_IRUSR) ? 'r' : '-'));
 	ft_putchar(((st_mode & S_IWUSR) ? 'w' : '-'));
@@ -49,7 +49,7 @@ static void permissions(mode_t st_mode)
 		ft_putchar(((st_mode & S_IXOTH) ? 'x' : '-'));
 }
 
-static void type(mode_t st_mode)
+static void print_type(mode_t st_mode)
 {
 	if (S_ISFIFO(st_mode))
 		ft_putchar('p');
@@ -67,26 +67,41 @@ static void type(mode_t st_mode)
 		ft_putchar('s');
 	else
 		ft_putchar('-');
-	permissions(st_mode);
+	print_permissions(st_mode);
 	ft_putstr("  ");
 }
 
-static void	print_all(t_elem *elem, t_ls *ls)
+static void	print_link(t_elem *elem)
 {
 	char	*link;
 	int		size;
 
+	if (S_ISLNK(elem->stat.st_mode))
+	{
+		ft_putchar(' ');
+		size = PATH_MAX;
+		link = ft_strnew(size);
+		if ((readlink(elem->path, link, size - 1) >= 0))
+			ft_printf("-> %s\n", link);
+		else
+			perror(elem->path);
+		ft_strdel(&link);
+	}
+	else
+		ft_putchar('\n');
+}
+
+static void	print_all(t_elem *elem, t_ls *ls)
+{
 	if (elem)
 	{
-		type(elem->stat.st_mode);
+		print_type(elem->stat.st_mode);
 		ft_putxchar(' ', ls->link_mlen - elem->link_len);
 		ft_putnbrs(elem->link);
 		ft_putstrs(elem->user);
-		ft_putxchar(' ', ls->user_mlen - elem->user_len);
-		ft_putchar(' ');
+		ft_putxchar(' ', ls->user_mlen - elem->user_len + 1);
 		ft_putstrs(elem->grp);
-		ft_putxchar(' ', ls->grp_mlen - elem->grp_len);
-		ft_putchar(' ');
+		ft_putxchar(' ', ls->grp_mlen - elem->grp_len + 1);
 		if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
 		{
 			ft_putxchar(' ', ls->majo_mlen - elem->majo_len + 1);
@@ -102,19 +117,7 @@ static void	print_all(t_elem *elem, t_ls *ls)
 		}
 		ft_putstrs(elem->date);
 		ft_putstr(elem->name);
-		if (S_ISLNK(elem->stat.st_mode))
-		{
-			ft_putchar(' ');
-			size = PATH_MAX;
-			link = ft_strnew(size);
-			if ((readlink(elem->path, link, size - 1) >= 0))
-				ft_printf("-> %s\n", link);
-			else
-				perror(elem->path);
-			ft_strdel(&link);
-		}
-		else
-			ft_putchar('\n');
+		print_link(elem);
 	}
 }
 
