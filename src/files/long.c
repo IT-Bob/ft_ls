@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/26 15:24:23 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 15:52:37 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	print_other(t_elem *elem, t_ls *ls)
 	}
 	else
 	{
-		ft_putxchar(' ', ls->size_mlen - elem->size_len);
+		ft_putxchar(' ', ls->size_mlen + ls->dec - elem->size_len);
 		ft_putnbrs(elem->size);
 	}
 	ft_putstrs(elem->date);

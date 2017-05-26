@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/26 15:30:31 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 15:53:02 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void		initialise_size(t_ls *ls)
 	ls->majo_mlen = 0;
 	ls->mino_mlen = 0;
 	ls->total = -1;
+	ls->dec = 0;
 }
 
 static void	initialise(t_ls *ls)

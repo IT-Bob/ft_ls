@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 20:44:44 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 16:29:47 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void	fill_size(t_elem *elem, t_ls *ls, int blocks)
 		if (elem->size_len > ls->size_mlen)
 			ls->size_mlen = elem->size_len;
 		elem->majo_len = ft_nbrlen(elem->major);
-		if (elem->majo_len > ls->majo_mlen)
+		if (ls->dec && elem->majo_len > ls->majo_mlen)
 			ls->majo_mlen = elem->majo_len;
 		elem->mino_len = ft_nbrlen(elem->minor);
-		if (elem->mino_len > ls->mino_mlen)
+		if (ls->dec && elem->mino_len > ls->mino_mlen)
 			ls->mino_mlen = elem->mino_len;
 		if (ls->majo_mlen + ls->mino_mlen > ls->size_mlen)
 			ls->size_mlen = ls->majo_mlen + ls->mino_mlen + 2;

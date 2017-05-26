@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 20:53:03 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 15:53:33 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_ls
 	int	majo_mlen;
 	int	mino_mlen;
 	int	total;
+	int	dec;
 }				t_ls;
 
 typedef struct	s_elem

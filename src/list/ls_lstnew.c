@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/26 15:22:05 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 15:54:20 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	date(t_elem *elem, struct stat stat)
 	ft_strdel(&date);
 }
 
-static void	long_flag(t_elem *elem, struct stat stat)
+static void	long_flag(t_elem *elem, struct stat stat, t_ls *ls)
 {
 	struct passwd	*pwd;
 	struct group	*grp;
@@ -60,8 +60,12 @@ static void	long_flag(t_elem *elem, struct stat stat)
 		elem->grp = ft_strcpy(elem->grp, grp->gr_name);
 	}
 	date(elem, stat);
-	elem->major = major(stat.st_rdev);
-	elem->minor = minor(stat.st_rdev);
+	if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
+	{
+		elem->major = major(stat.st_rdev);
+		elem->minor = minor(stat.st_rdev);
+		ls->dec = 1;
+	}
 }
 
 static void	init(t_elem *elem)
@@ -91,7 +95,7 @@ t_elem		*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 		elem->grp = NULL;
 		elem->date = NULL;
 		if (ls->flags[2])
-			long_flag(elem, stat);
+			long_flag(elem, stat, ls);
 		else
 			init(elem);
 		elem->next = NULL;
