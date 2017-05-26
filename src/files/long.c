@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:31:17 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 20:45:29 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 11:04:11 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,15 @@ static void	print_link(t_elem *elem)
 	}
 	else
 		ft_putchar('\n');
+}
+
+// supprimer
+void fonction()
+{
+	print_type(0);
+	print_permissions(0);
+	print_other(NULL, NULL);
+	print_link(NULL);
 }
 
 void		print_all(t_elem *elem, t_ls *ls)

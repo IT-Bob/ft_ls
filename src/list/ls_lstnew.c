@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 16:45:15 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/26 11:40:54 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,13 @@ t_elem	*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 			{
 				date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 7);
 				date2 = ft_strsub(ctime(&elem->stat.st_mtime), 19, 5);
-				elem->date = ft_strjoin(date, date2);
+				elem->date = ft_strjoin(date, date2);									//leaks;
 			}
 			else
-				if (!(elem->date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
-				perror(NAME);
+				if (!(elem->date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12))) //leaks
+					perror(NAME);
+			ft_strdel(&date);
+			ft_strdel(&date2);
 			elem->major = major(stat.st_rdev);
 			elem->minor = minor(stat.st_rdev);
 		}
