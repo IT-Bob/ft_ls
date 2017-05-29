@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/26 16:29:47 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 10:01:55 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ static void	fill_size(t_elem *elem, t_ls *ls, int blocks)
 			ls->size_mlen = ls->majo_mlen + ls->mino_mlen + 2;
 		ls->total += blocks;
 	}
+}
+
+t_elem		*add_name_path(t_elem *f, char *path, t_ls *ls, struct stat s)
+{
+	t_elem	*elem;
+
+	elem = ls_lstnew(path, path, s, ls);
+	if (ls->flags[2])
+		fill_size(elem, ls, s.st_blocks);
+	if (ls && ls->flags[4])
+		f = ls_lstaddtime(&f, elem);
+	else
+		f = ls_lstaddalpha(&f, elem);
+	if (ls)
+		ls->nb_files = 1;
+	return (f);
 }
 
 t_elem		*add_files(t_elem *files, char *name, t_ls *ls, struct stat s)
