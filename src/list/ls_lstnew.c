@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 14:14:45 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 14:24:42 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static void	date(t_elem *elem, struct stat stat)
 	times = ctime(&elem->stat.st_mtime);
 	if (time(NULL) - stat.st_mtime > 2628000 * 6 || time(NULL) < stat.st_mtime)
 	{
-		date = ft_strsub(times, 4, 7);
+		if (!(date = ft_strsub(times, 4, 7)))
+			ft_perror("Erreur - date()", -1);
 		elem->date = ft_strcat(elem->date, date);
 		elem->date = ft_strcat(elem->date, " ");
 		ft_strdel(&date);
-		date = ft_itoa(ft_atoi(&times[19]));
+		if (!(date = ft_itoa(ft_atoi(&times[19]))))
+			ft_perror("Erreur - date()", -1);
 	}
 	else if (!(date = ft_strsub(times, 4, 12)))
 		perror(NAME);
@@ -46,20 +48,15 @@ static void	long_flag(t_elem *elem, struct stat stat, t_ls *ls)
 
 	elem->link = stat.st_nlink;
 	elem->size = stat.st_size;
-	if (!(pwd = getpwuid(stat.st_uid)))
-		perror(NAME);
-	else
+	if (!(pwd = getpwuid(stat.st_uid)) || !(grp = getgrgid(stat.st_gid)))
 	{
-		elem->user = ft_strnew(ft_strlen(pwd->pw_name));
-		elem->user = ft_strcpy(elem->user, pwd->pw_name);
-	}
-	if (!(grp = getgrgid(stat.st_gid)))
 		perror(NAME);
-	else
-	{
-		elem->grp = ft_strnew(ft_strlen(grp->gr_name));
-		elem->grp = ft_strcpy(elem->grp, grp->gr_name);
+		exit(-1);
 	}
+	elem->user = ft_strnew(ft_strlen(pwd->pw_name));
+	elem->user = ft_strcpy(elem->user, pwd->pw_name);
+	elem->grp = ft_strnew(ft_strlen(grp->gr_name));
+	elem->grp = ft_strcpy(elem->grp, grp->gr_name);
 	date(elem, stat);
 	if (S_ISCHR(elem->stat.st_mode) || S_ISBLK(elem->stat.st_mode))
 	{
@@ -100,6 +97,7 @@ t_elem		*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 			long_flag(elem, stat, ls);
 		elem->next = NULL;
 	}
-	ft_perror("Erreur - ls_lstnew", -1);
-	return (NULL);
+	else
+		ft_perror("Erreur - ls_lstnew()", -1);
+	return (elem);
 }
