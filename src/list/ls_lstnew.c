@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 14:24:42 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 16:07:46 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	init(t_elem *elem)
 t_elem		*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 {
 	t_elem	*elem;
-	
+
 	if ((elem = (t_elem*)ft_memalloc(sizeof(t_elem))) && ls)
 	{
 		if ((elem->name = (name ? ft_strnew(ft_strlen(name)) : NULL)))

@@ -113,14 +113,25 @@ diff sorties/sortie_ls_alltimereverseusers sorties/sortie_ft_alltimereverseusers
 
 #ls -R
 echo "\ndiff ls -R - ft_ls -R : "
+echo "1"
 diff sorties/sortie_ls_recur sorties/sortie_ft_recur
+echo "2"
 diff sorties/sortie_ls_recurpoint sorties/sortie_ft_recurpoint
+echo "3"
 diff sorties/sortie_ls_recurslash sorties/sortie_ft_recurslash
+echo "4"
 diff sorties/sortie_ls_recurtild sorties/sortie_ft_recurtild
+echo "5"
 diff sorties/sortie_ls_recurmulti sorties/sortie_ft_recurmulti
+echo "6"
 diff sorties/sortie_ls_recurnonex sorties/sortie_ft_recurnonex
+echo "7"
 diff sorties/sortie_ls_recurdirec sorties/sortie_ft_recurdirec
+echo "8"
 diff sorties/sortie_ls_recurfiles sorties/sortie_ft_recurfiles
+echo "9"
 #diff sorties/sortie_ls_recurdev sorties/sortie_ft_recurdev
+echo "10"
 diff sorties/sortie_ls_recurbin sorties/sortie_ft_recurbin
+echo "11"
 diff sorties/sortie_ls_recurusers sorties/sortie_ft_recurusers

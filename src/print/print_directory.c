@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/25 20:53:32 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 16:23:33 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static t_elem	*read_dir(DIR *fold, char *name, t_ls *ls)
 
 	elem = NULL;
 	direc = NULL;
+	ls->total = 0;
 	while ((d = readdir(fold)))
 	{
 		s.st_ino = 0;
@@ -81,7 +82,9 @@ void			print_directory(t_elem *list, t_ls *ls)
 	DIR				*fold;
 	t_elem			*direc;
 
-	if (ls && (ls->nb_files || ls->nb_direc > 1 || ls->nb_nonex))
+	if (!ls)
+		ft_perror("Paramètre NULL - print_directory()", -1);
+	if (ls->nb_files || ls->nb_direc > 1 || ls->nb_nonex)
 		ft_printf("%s:\n", list->name);
 	if ((fold = opendir(list->name)))
 	{
