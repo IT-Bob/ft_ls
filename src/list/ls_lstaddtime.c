@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/18 14:22:57 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 11:08:44 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_elem	*ls_lstaddtime(t_elem **alst, t_elem *new)
 		if (!lst)
 			return (new);
 		while (lst && ((new->stat.st_mtime < lst->stat.st_mtime) ||
-			((new->stat.st_mtime == lst->stat.st_mtime) && ft_strcmp(new->name, lst->name) > 0)))/*&&
-			(new->stat.st_mtimespec.tv_nsec < new->stat.st_mtimespec.tv_nsec)*/
+						((new->stat.st_mtime == lst->stat.st_mtime) &&
+						ft_strcmp(new->name, lst->name) > 0)))
 		{
 			prev = lst;
 			lst = lst->next;

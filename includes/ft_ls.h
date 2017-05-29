@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 10:02:19 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 11:08:09 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct	s_elem
 
 void			put_error(t_elem *elem, t_ls *ls);
 void			initialise_size(t_ls *ls);
+char			*just_name(char *name);
 
 /*
 ** src/flags
@@ -124,7 +125,5 @@ void			ls_nonex(t_list **nonex);
 */
 
 void			print_directory(t_elem *list, t_ls *ls);
-
-char			*just_name(char *name);
 
 #endif

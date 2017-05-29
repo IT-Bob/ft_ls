@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/26 15:54:20 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 12:58:23 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@
 #include <uuid/uuid.h>
 #include <sys/types.h>
 
-// À PROTEGER
-
 static void	date(t_elem *elem, struct stat stat)
 {
 	char	*date;
+	char	*times;
 
 	date = NULL;
 	elem->date = ft_strnew(12);
-	if (time(NULL) - stat.st_mtime > 2628000 * 6)
+	times = ctime(&elem->stat.st_mtime);
+	if (time(NULL) - stat.st_mtime > 2628000 * 6 || time(NULL) < stat.st_mtime)
 	{
-		date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 7);
+		date = ft_strsub(times, 4, 7);
 		elem->date = ft_strcat(elem->date, date);
+		elem->date = ft_strcat(elem->date, " ");
 		ft_strdel(&date);
-		date = ft_strsub(ctime(&elem->stat.st_mtime), 19, 5);
+		date = ft_itoa(ft_atoi(&times[19]));
 	}
-	else if (!(date = ft_strsub(ctime(&elem->stat.st_mtime), 4, 12)))
+	else if (!(date = ft_strsub(times, 4, 12)))
 		perror(NAME);
 	elem->date = ft_strcat(elem->date, date);
 	ft_strdel(&date);
