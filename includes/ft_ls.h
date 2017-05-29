@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:05:47 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 11:08:09 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 13:59:06 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char			*just_name(char *name);
 */
 
 int				find_flags(char **argv, int flags[]);
-void			illegal_option(char c);
 
 /*
 ** src/list

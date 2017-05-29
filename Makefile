@@ -6,7 +6,7 @@
 #    By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 17:18:16 by aguerin           #+#    #+#              #
-#    Updated: 2017/05/25 20:52:40 by aguerin          ###   ########.fr        #
+#    Updated: 2017/05/29 13:58:48 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ PRT = $(SRC)print/
 PTC =\
 $(SRC)error.c $(SRC)ft_ls.c\
 $(DRT)add.c $(DRT)ls_direc.c\
-$(FLG)find.c $(FLG)error.c\
+$(FLG)find.c\
 $(FLS)add.c $(FLS)long.c $(FLS)ls_files.c\
 $(LST)ls_lstaddalpha.c $(LST)ls_lstaddtime.c $(LST)ls_lstdel.c $(LST)ls_lstiter.c $(LST)ls_lstiter_reverse.c $(LST)ls_lstnew.c $(LST)print.c\
 $(NOE)add.c $(NOE)ls_nonex.c\

@@ -6,12 +6,17 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 10:01:38 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 14:04:41 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include <stdlib.h>
+
+/*
+** find_elem() trouve les éléments envoyés dans les paramètres de argv (censés 
+** indiquer des fichiers et dossiers).
+*/
 
 static void	find_elem(char **argv, int size, t_ls *ls)
 {
@@ -50,7 +55,7 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 void		initialise_size(t_ls *ls)
 {
 	if (!ls)
-		exit(-1);
+		ft_perror("Paramètre NULL - initialise_size()", -1);
 	ls->link_mlen = 0;
 	ls->user_mlen = 0;
 	ls->grp_mlen = 0;
@@ -64,7 +69,7 @@ void		initialise_size(t_ls *ls)
 static void	initialise(t_ls *ls)
 {
 	if (!ls)
-		exit(-1);
+		ft_perror("Paramètre NULL - initialise()", -1);
 	fill_tab(ls->flags, NB_FLAG, 0);
 	ls->error = 0;
 	ls->nb_direc = 0;

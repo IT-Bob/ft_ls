@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 12:58:23 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 14:14:45 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,29 @@ static void	init(t_elem *elem)
 	elem->link_len = 0;
 	elem->major = 0;
 	elem->minor = 0;
+	elem->link = 0;
+	elem->size = 0;
+	elem->user = NULL;
+	elem->grp = NULL;
+	elem->date = NULL;
 }
 
 t_elem		*ls_lstnew(char *name, char *path, struct stat stat, t_ls *ls)
 {
 	t_elem	*elem;
-
-	if ((elem = (t_elem*)ft_memalloc(sizeof(t_elem))))
+	
+	if ((elem = (t_elem*)ft_memalloc(sizeof(t_elem))) && ls)
 	{
 		if ((elem->name = (name ? ft_strnew(ft_strlen(name)) : NULL)))
 			elem->name = ft_strcpy(elem->name, name);
 		if ((elem->path = (path ? ft_strnew(ft_strlen(path)) : NULL)))
 			elem->path = ft_strcpy(elem->path, path);
 		elem->stat = stat;
-		elem->link = 0;
-		elem->size = 0;
-		elem->user = NULL;
-		elem->grp = NULL;
-		elem->date = NULL;
+		init(elem);
 		if (ls->flags[2])
 			long_flag(elem, stat, ls);
-		else
-			init(elem);
 		elem->next = NULL;
 	}
-	return (elem);
+	ft_perror("Erreur - ls_lstnew", -1);
+	return (NULL);
 }
