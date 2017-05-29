@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:53:21 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 10:01:55 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/29 10:58:24 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_elem		*add_name_path(t_elem *f, char *path, t_ls *ls, struct stat s)
 	t_elem	*elem;
 
 	elem = ls_lstnew(path, path, s, ls);
+	if (ls && ls->total == -1)
+		ls->total = 0;
 	if (ls->flags[2])
 		fill_size(elem, ls, s.st_blocks);
 	if (ls && ls->flags[4])
@@ -79,6 +81,8 @@ t_elem		*add_files_path(t_elem *f, char *path, t_ls *ls, struct stat s)
 	t_elem	*elem;
 
 	elem = ls_lstnew(just_name(path), path, s, ls);
+	if (ls && ls->total == -1)
+		ls->total = 0;
 	if (ls->flags[2])
 		fill_size(elem, ls, s.st_blocks);
 	if (ls && ls->flags[4])
