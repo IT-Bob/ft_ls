@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/30 12:22:35 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 13:07:14 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 ** indiquer des fichiers et dossiers).
 */
 
+static void	list_null(t_elem **direc, t_elem **files, t_list **nonex)
+{
+	*direc = NULL;
+	*files = NULL;
+	*nonex = NULL;
+}
+
 static void	find_elem(char **argv, int size, t_ls *ls)
 {
 	int			i;
@@ -27,26 +34,19 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 	t_list		*nonex;
 
 	i = -1;
-	direc = NULL;
-	files = NULL;
-	nonex = NULL;
+	list_null(&direc, &files, &nonex);
 	while (++i < size)
 	{
 		s.st_ino = 0;
 		lstat(argv[i], &s);
-		if (S_ISLNK(s.st_mode) && ls && !ls->flags[2])
-			stat(argv[i], &s);
+		(S_ISLNK(s.st_mode) && ls && !ls->flags[2]) ? stat(argv[i], &s) : 0;
 		if (!s.st_ino)
 			nonex = add_nonex(nonex, argv[i], ls);
 		else if (S_ISDIR(s.st_mode))
 			direc = add_direc(direc, argv[i], ls, s);
 		else
-		{
-			if (!S_ISLNK(s.st_mode))
-				files = add_files(files, argv[i], ls, s);
-			else
-				files = add_name_path(files, argv[i], ls, s);
-		}
+			files = S_ISLNK(s.st_mode) ? add_name_path(files, argv[i], ls, s) :
+										add_files(files, argv[i], ls, s);
 	}
 	ls->total = -1;
 	ls_nonex(&nonex);

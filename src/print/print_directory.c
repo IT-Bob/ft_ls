@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 09:16:59 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 16:23:33 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 13:08:01 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,9 @@ static t_elem	*read_dir(DIR *fold, char *name, t_ls *ls)
 		str = concat(name, d->d_name);
 		lstat(str, &s);
 		if (d->d_name[0] != '.' || (ls && ls->flags[1]))
-		{
-			if (!S_ISLNK(s.st_mode))
-				elem = add_files(elem, d->d_name, ls, s);
-			else
-				elem = add_files_path(elem, str, ls, s);
-		}
+			elem = S_ISLNK(s.st_mode) ?
+				add_files_path(elem, str, ls, s) :
+				add_files(elem, d->d_name, ls, s);
 		if (ls->flags[0] && add(d->d_name, ls) && S_ISDIR(s.st_mode))
 			direc = add_direc(direc, str, ls, s);
 		ft_strdel(&str);
