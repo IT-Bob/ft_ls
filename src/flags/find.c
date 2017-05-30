@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 17:11:53 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 14:02:43 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 11:32:15 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	fill_flags_tab(char *argv, int flags[])
 ** find_flags() cherche les flags envoyés dans les paramètres de argv.
 ** La fonction renvoie l'indice de l'élément suivant le dernier flag trouvé.
 */
-
 
 int			find_flags(char **argv, int flags[])
 {

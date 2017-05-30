@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 14:04:41 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 11:44:01 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include <stdlib.h>
 
 /*
-** find_elem() trouve les éléments envoyés dans les paramètres de argv (censés 
+** find_elem() trouve les éléments envoyés dans les paramètres de argv (censés
 ** indiquer des fichiers et dossiers).
 */
+
+static void 
 
 static void	find_elem(char **argv, int size, t_ls *ls)
 {
@@ -41,10 +43,12 @@ static void	find_elem(char **argv, int size, t_ls *ls)
 		else if (S_ISDIR(s.st_mode))
 			direc = add_direc(direc, argv[i], ls, s);
 		else
+		{
 			if (!S_ISLNK(s.st_mode))
 				files = add_files(files, argv[i], ls, s);
 			else
 				files = add_name_path(files, argv[i], ls, s);
+		}
 	}
 	ls->total = -1;
 	ls_nonex(&nonex);

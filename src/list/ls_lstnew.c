@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 16:07:46 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 12:11:18 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static void	long_flag(t_elem *elem, struct stat stat, t_ls *ls)
 
 	elem->link = stat.st_nlink;
 	elem->size = stat.st_size;
-	if (!(pwd = getpwuid(stat.st_uid)) || !(grp = getgrgid(stat.st_gid)))
+	pwd = getpwuid(stat.st_uid);
+	grp = getgrgid(stat.st_gid);
+	if (!pwd || !grp)
 	{
 		perror(NAME);
 		exit(-1);
