@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/30 11:44:01 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 12:22:35 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 ** find_elem() trouve les éléments envoyés dans les paramètres de argv (censés
 ** indiquer des fichiers et dossiers).
 */
-
-static void 
 
 static void	find_elem(char **argv, int size, t_ls *ls)
 {

@@ -6,7 +6,7 @@
 /*   By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:23:40 by aguerin           #+#    #+#             */
-/*   Updated: 2017/05/29 11:08:44 by aguerin          ###   ########.fr       */
+/*   Updated: 2017/05/30 12:19:49 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_elem	*ls_lstaddtime(t_elem **alst, t_elem *new)
 	t_elem *prev;
 	t_elem *head;
 
+	head = (new ? *alst : NULL);
 	if (new)
 	{
-		head = *alst;
 		lst = *alst;
 		prev = NULL;
 		if (!lst)
@@ -42,7 +42,6 @@ t_elem	*ls_lstaddtime(t_elem **alst, t_elem *new)
 		else
 			head = new;
 		new->next = lst;
-		return (head);
 	}
-	return (NULL);
+	return (head);
 }
