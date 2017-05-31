@@ -6,7 +6,7 @@
 #    By: aguerin <aguerin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 17:18:16 by aguerin           #+#    #+#              #
-#    Updated: 2017/05/29 13:58:48 by aguerin          ###   ########.fr        #
+#    Updated: 2017/05/31 16:25:50 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,13 @@ PTO = $(PTC:.c=.o)
 
 LIB = libft/libft.a
 
+$(NAME): $(LIB) $(PTO)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(CLIB) $(PTO) -o $(NAME)
+
 $(LIB):
 	make -C libft all
 
 all: $(NAME)
-
-$(NAME): $(LIB) $(PTO)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(CLIB) $(PTO) -o $(NAME)
 
 clean:
 	make -C libft clean
